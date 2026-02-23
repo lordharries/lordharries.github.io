@@ -1,4 +1,3 @@
-[podcast_guide(11).html](https://github.com/user-attachments/files/25500335/podcast_guide.11.html)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,7 +136,7 @@ main{flex:1;}
 .recs-table-wrap{padding:2px;background:var(--border);}
 .recs-table{width:100%;border-collapse:collapse;background:var(--panel);}
 .recs-table th{background:var(--dark4);font-family:'Righteous',sans-serif;font-size:11px;letter-spacing:.1em;color:var(--yellow);padding:12px 16px;text-align:left;border-bottom:2px solid var(--yellow);position:sticky;top:0;}
-.recs-table td{padding:11px 16px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.recs-table td{padding:11px 16px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;background:var(--panel);color:var(--cream);}
 .recs-table tr:hover td{background:var(--dark3);}
 .rec-film{color:var(--cream);font-weight:400;}
 .rec-film.midsommar-row{color:var(--yellow);font-weight:600;}
@@ -146,6 +145,8 @@ main{flex:1;}
 .rec-by-o{color:var(--ltgrey);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
 .rec-ep{font-size:11px;color:var(--ltgrey);}
 .rec-count-badge{display:inline-block;background:var(--yellow);color:var(--black);font-family:'Righteous',sans-serif;font-size:11px;padding:2px 9px;margin-left:8px;vertical-align:middle;}
+.rec-ep-link{display:inline-block;background:var(--dark3);color:var(--yellow);font-family:'Righteous',sans-serif;font-size:11px;padding:2px 7px;margin:1px;cursor:pointer;border:1px solid var(--border);}
+.rec-ep-link:hover{background:var(--yellow);color:var(--black);}
 
 /* ── OVERLAY ────────────────────────────────── */
 .overlay{display:none;position:fixed;inset:0;z-index:300;background:var(--black);overflow-y:auto;}
@@ -908,8 +909,9 @@ function randomTopics() {
 function initSite() {
   const S = computeStats();
   const n = EPS.length;
-  const gPct = (S.gWins/S.gPicks*100).toFixed(1);
-  const iPct = (S.iWins/S.iPicks*100).toFixed(1);
+  const episodesWithWinner = EPS.filter(ep=>ep.picks.some(p=>p.final_rank===1)).length;
+  const gPct = episodesWithWinner ? (S.gWins/episodesWithWinner*100).toFixed(1) : '0.0';
+  const iPct = episodesWithWinner ? (S.iWins/episodesWithWinner*100).toFixed(1) : '0.0';
 
   document.getElementById('header-sub').textContent = n+'+ episodes \u00b7 Available everywhere';
   document.getElementById('stat-eps').textContent   = n+'+';
@@ -1165,7 +1167,7 @@ function initData() {
   const iPct=(S.iWins/S.iPicks*100).toFixed(1);
   setTimeout(()=>{ document.getElementById('wrf-g').style.width=gPct+'%'; document.getElementById('wrf-i').style.width=iPct+'%'; },200);
 
-  const picks=[["The Thing",6],["The Bear",5],["Titanic",4],["Baby Driver",3],["Chef",3],["Jojo Rabbit",3],["The Matrix",3],["Lost In Translation",3],["Inception",3],["Drive",3]];
+  const picks=[["The Thing",6],["The Bear",5],["Titanic",4],["Baby Driver",3],["Chef",3],["JoJo Rabbit",3],["The Matrix",3],["Lost In Translation",3],["Inception",3],["Drive",3]];
   const chart=document.getElementById('hb-chart');
   picks.forEach((p,i)=>{
     const row=document.createElement('div'); row.className='hb-row';
