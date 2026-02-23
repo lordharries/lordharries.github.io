@@ -1,3 +1,4 @@
+[podcast_guide(11).html](https://github.com/user-attachments/files/25500335/podcast_guide.11.html)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -968,15 +969,11 @@ function renderEpisodes(list) {
   const grid = document.getElementById('ep-grid');
   grid.innerHTML = list.map(ep => {
     const hasPicks = ep.picks && ep.picks.length > 0;
-    const top = hasPicks
-      ? (ep.picks.filter(p=>p.final_rank===1).map(p=>p.pick).join(' & ') || (ep.picks[0]&&ep.picks[0].pick) || '')
-      : (ep.recommendations&&ep.recommendations.length ? ep.recommendations.slice(0,2).map(r=>r.recommendation).join(' \u00b7 ') : '');
     const badge = isFeat(ep)?'feat':isYear(ep)?'year':'';
     const noBadge = !hasPicks ? '<span class="ep-badge" style="background:var(--dark4);color:var(--grey);">No picks</span>' : '';
     return '<div class="ep-card" onclick="openEp('+ep.episode_number+')">'
       +'<div class="ep-num">Ep '+ep.episode_number+(badge?' <span class="ep-badge">'+badge+'</span>':'')+noBadge+'</div>'
       +'<div class="ep-title">'+esc(ep.episode_name)+'</div>'
-      +'<div class="ep-top">'+esc(top)+'</div>'
       +'<div class="ep-date">'+(ep.release_date||'')+'</div>'
       +'</div>';
   }).join('');
