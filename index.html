@@ -877,7 +877,7 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 function rankCls(r) { return r===1?'rank1':r===2?'rank2':r===3?'rank3':'ranku'; }
-function rankLbl(r) { return r===1?'?? 1st':r===2?'?? 2nd':r===3?'?? 3rd':r==='Unranked'?'Unranked':'—'; }
+function rankLbl(r) { return r===1?'🥇 1st':r===2?'🥈 2nd':r===3?'🥉 3rd':r==='Unranked'?'Unranked':'—'; }
 function isYear(ep) { return /year|\d{4}/i.test(ep.episode_name); }
 function isFeat(ep) { return /feat\./i.test(ep.episode_name); }
 
