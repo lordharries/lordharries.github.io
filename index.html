@@ -49,7 +49,7 @@ main{flex:1;}
 .hero-desc{font-size:14px;line-height:1.8;color:var(--ltgrey);max-width:450px;margin-bottom:36px;}
 .hero-desc strong{color:var(--cream);font-weight:600;}
 .hero-desc em{color:var(--yellow);font-style:normal;font-weight:600;}
-.plat-label{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ltgrey);margin-bottom:10px;}
+.btn-submit-topic{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:var(--cream);font-family:'Righteous',sans-serif;font-size:13px;letter-spacing:.08em;padding:12px 26px;border-radius:50px;border:none;cursor:pointer;text-decoration:none;transition:all .2s;margin-bottom:28px;}.btn-submit-topic:hover{background:#c00807;transform:translateY(-1px);box-shadow:0 4px 16px rgba(166,7,6,.4);color:var(--cream);}.btn-submit-topic svg{width:14px;height:14px;fill:var(--cream);flex-shrink:0;}.plat-label{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ltgrey);margin-bottom:10px;}
 .plat-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
 .btn-plat{display:inline-flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--border);color:var(--cream);font-family:'Righteous',sans-serif;font-size:12px;letter-spacing:.06em;padding:10px 16px;text-decoration:none;transition:all .15s;}
 .btn-plat:hover{border-color:var(--yellow);color:var(--yellow);}
@@ -526,6 +526,7 @@ mark{background:var(--yellow);color:var(--black);padding:0 2px;}
       <div class="hero-eyebrow">Est. October 2020 · Award Nominated</div>
       <h1 class="hero-title">The Podcast<br><span class="yt">Nobody</span><br><span class="rt">Asked For</span>.</h1>
       <p class="hero-desc" id="hero-desc">Loading…</p>
+      <a href="https://forms.gle/dcbdkxb8yjrKk77t9" target="_blank" class="btn-submit-topic"><svg viewBox="0 0 16 16"><path d="M13.5 2.5l-11 11M6 2.5H2.5V6M13.5 10v3.5H10" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>SUBMIT A TOPIC</a>
       <div class="plat-label">Listen now</div>
       <div class="plat-btns">
         <a href="https://podcasts.apple.com/gb/podcast/the-podcast-nobody-asked-for/id1531618753" target="_blank" class="btn-plat">
@@ -957,7 +958,7 @@ function initSite() {
   const topics = randomTopics();
   const [e1,e2,e3] = randomExpect();
   document.getElementById('hero-desc').innerHTML =
-    'The award nominated podcast where movie fans Graham and I argue about a Top 3 list of a topic that nobody asked them to talk about. '
+    'The award nominated podcast where movie fans Graham and Ian argue about a Top 3 list of a topic that nobody asked them to talk about. '
     +'Topics have included; <em>“'+esc(topics[0])+'”</em>, <em>“'+esc(topics[1])+'”</em> and <em>“'+esc(topics[2])+'”</em>. '
     +'<strong>'+n+'+</strong> episodes which nobody asked for. '
     +'Expect <em>'+esc(e1)+'</em>, <em>'+esc(e2)+'</em> and <em>'+esc(e3)+'</em>.';
