@@ -942,14 +942,7 @@ mark { background:var(--gold); color:var(--dark); padding:0 2px; }
     <div class="hstat"><div class="hstat-n" id="stat-mids">—</div><div class="hstat-l">Midsommar Recs</div></div>
   </div>
 
-  <!-- SECTION CARDS -->
-  <div class="home-sections">
-    <div class="hsc" onclick="switchTab('browse')"><div class="hsc-icon">📋</div><div class="hsc-title">Top 3 Archive</div><div class="hsc-desc">Every pick, every episode.</div><div class="hsc-arrow">→</div></div>
-    <div class="hsc" onclick="switchTab('search')"><div class="hsc-icon">🔍</div><div class="hsc-title">Search Picks</div><div class="hsc-desc">Find any film across all episodes.</div><div class="hsc-arrow">→</div></div>
-    <div class="hsc" onclick="switchTab('recs')"><div class="hsc-icon">🎬</div><div class="hsc-title">Movie Recs</div><div class="hsc-desc">Every recommendation ever made.</div><div class="hsc-arrow">→</div></div>
-    <div class="hsc" onclick="switchTab('data')"><div class="hsc-icon">📊</div><div class="hsc-title">Data &amp; Stats</div><div class="hsc-desc">The numbers behind the podcast.</div><div class="hsc-arrow">→</div></div>
-    <div class="hsc" onclick="switchTab('hosts')"><div class="hsc-icon">🎙️</div><div class="hsc-title">Your Hosts</div><div class="hsc-desc">The two who started all this.</div><div class="hsc-arrow">→</div></div>
-  </div>
+
 </div>
 
 <!-- TOP 3 ARCHIVE -->
@@ -1021,10 +1014,99 @@ mark { background:var(--gold); color:var(--dark); padding:0 2px; }
 <!-- DATA & STATS -->
 <div class="view" id="view-data">
   <div class="data-wrap" id="data-wrap">
-    <div class="d-card d-s12" style="text-align:center;padding:40px;">
-      <div style="font-family:'Cinzel',serif;font-size:14px;color:var(--muted);">Loading data…</div>
+
+  <!-- Win rate -->
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Overall</div>
+    <div class="d-title">Who's Winning?</div>
+    <div class="wr-row"><div class="wr-name" style="color:var(--red);">Graham</div><div class="wr-track"><div class="wr-fill" id="wrf-g" style="background:var(--red);"></div></div><div class="wr-pct" id="wrp-g">—</div></div>
+    <div class="wr-row"><div class="wr-name" style="color:var(--gold);">Ian</div><div class="wr-track"><div class="wr-fill" id="wrf-i" style="background:var(--gold);"></div></div><div class="wr-pct" id="wrp-i">—</div></div>
+    <div class="wr-note" id="wr-note"></div>
+  </div>
+
+  <!-- Picks matrix -->
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Breakdown</div>
+    <div class="d-title">Rank Distribution</div>
+    <div class="matrix">
+      <div class="mx-h" style="background:none;"></div>
+      <div class="mx-h">🥇 1st</div><div class="mx-h">🥈 2nd</div><div class="mx-h">🥉 3rd</div>
+      <div class="mx-c mx-rh" style="color:var(--red);font-family:'Cinzel',serif;font-size:12px;">Graham</div>
+      <div class="mx-c"><div class="mx-big" id="mx-g1">—</div><div class="mx-sub">picks</div></div>
+      <div class="mx-c"><div class="mx-big" id="mx-g2">—</div><div class="mx-sub">picks</div></div>
+      <div class="mx-c"><div class="mx-big" id="mx-g3">—</div><div class="mx-sub">picks</div></div>
+      <div class="mx-c mx-rh" style="color:var(--gold);font-family:'Cinzel',serif;font-size:12px;">Ian</div>
+      <div class="mx-c"><div class="mx-big" id="mx-i1">—</div><div class="mx-sub">picks</div></div>
+      <div class="mx-c"><div class="mx-big" id="mx-i2">—</div><div class="mx-sub">picks</div></div>
+      <div class="mx-c"><div class="mx-big" id="mx-i3">—</div><div class="mx-sub">picks</div></div>
     </div>
   </div>
+
+  <!-- Who's Winning chart -->
+  <div class="d-card d-s12">
+    <div class="d-eyebrow">Over Time</div>
+    <div class="d-title">Cumulative Score</div>
+    <div class="ww-scores">
+      <div class="ww-score" style="border-left:3px solid var(--red);"><div class="ww-score-n" id="wws-g" style="color:var(--red);">—</div><div class="ww-score-l">Graham</div></div>
+      <div class="ww-score" style="border-left:3px solid var(--gold);"><div class="ww-score-n" id="wws-i" style="color:var(--gold);">—</div><div class="ww-score-l">Ian</div></div>
+    </div>
+    <div class="ww-legend">
+      <div class="ww-leg"><div class="ww-leg-dot" style="background:var(--red);"></div>Graham</div>
+      <div class="ww-leg"><div class="ww-leg-dot" style="background:var(--gold);"></div>Ian</div>
+    </div>
+    <div class="ww-canvas-wrap">
+      <canvas id="ww-canvas"></canvas>
+      <div class="ww-tooltip" id="ww-tooltip"></div>
+    </div>
+    <div class="ww-note" id="ww-note"></div>
+  </div>
+
+  <!-- Top episodes (bar chart) -->
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Topics</div>
+    <div class="d-title">Most Picked Topics</div>
+    <div id="hb-chart"></div>
+  </div>
+
+  <!-- Episodes per year -->
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Episodes</div>
+    <div class="d-title">Episodes Per Year</div>
+    <div class="yr-chart" id="yr-chart"></div>
+    <div class="yr-lbls" id="yr-lbls"></div>
+  </div>
+
+  <!-- Recommendation Venn -->
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Recommendations</div>
+    <div class="d-title">Who Recommends More?</div>
+    <div class="venn">
+      <div class="vc g"><div class="vc-n" id="vc-g">—</div><div class="vc-l">Graham</div></div>
+      <div class="vc i"><div class="vc-n" id="vc-i">—</div><div class="vc-l">Ian</div></div>
+      <div class="vm"><div class="vm-n" id="vc-b">—</div><div class="vm-l">Both</div></div>
+    </div>
+    <div class="venn-note" id="venn-note"></div>
+  </div>
+
+  <!-- Biggest snub -->
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Unlucky</div>
+    <div class="d-title">Biggest Snubs</div>
+    <div class="snub-list" id="snub-list"></div>
+  </div>
+
+  <!-- Awards -->
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Recognition</div>
+    <div class="d-title">Award Nominations</div>
+    <div class="awards-list">
+      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Tangent</div><div class="award-show">Golden Lobes</div><div class="award-year">2024 NOMINEE</div></div>
+      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Social Media</div><div class="award-show">Golden Lobes</div><div class="award-year">2024 NOMINEE</div></div>
+      <div class="award-item"><div class="award-trophy">🎙️</div><div class="award-name">Best Jingle</div><div class="award-show">Independent Podcast Awards</div><div class="award-year">2024 NOMINEE</div></div>
+    </div>
+  </div>
+
+</div>
 </div>
 
 <!-- YOUR HOSTS -->
@@ -1221,14 +1303,11 @@ function computeStats() {
 
 function randomExpect() {
   const shuffled = [...HERO_POOL].sort(()=>Math.random()-.5);
-  const item1 = shuffled[0][Math.floor(Math.random()*3)];
-  const item2 = shuffled[1][Math.floor(Math.random()*3)];
-  const item3 = shuffled[2][Math.floor(Math.random()*3)];
-  return [item1, item2, item3];
+  return [shuffled[0], shuffled[1], shuffled[2]];
 }
 function randomTopics() {
   const reg = EPS.filter(ep =>
-    !ep.type &&
+    !ep.category &&
     !ep.episode_name.toLowerCase().includes('feat.') &&
     ep.episode_name.length < 65
   );
@@ -1306,8 +1385,8 @@ function renderEpisodes(list) {
   const grid = document.getElementById('ep-grid');
   grid.innerHTML = list.map(ep => {
     const hasPicks = ep.picks && ep.picks.length > 0;
-    const typeBadge = ep.type ? epTypeBadge(ep.type) : '';
-    const noBadge = (!hasPicks && !ep.type) ? '<span class="ep-badge" style="background:var(--dark4);color:var(--grey);">No picks</span>' : '';
+    const typeBadge = ep.category ? epTypeBadge(ep.category) : '';
+    const noBadge = (!hasPicks && !ep.category) ? '<span class="ep-badge" style="background:var(--dark4);color:var(--grey);">No picks</span>' : '';
     return '<div class="ep-card" onclick="openEp('+ep.episode_number+')">'
       +'<div class="ep-num">Ep '+ep.episode_number+typeBadge+noBadge+'</div>'
       +'<div class="ep-title">'+esc(ep.episode_name)+'</div>'
@@ -1322,8 +1401,8 @@ function filterEps() {
   const type = document.getElementById('browse-type').value;
   let list = EPS;
   if(q) list = list.filter(ep=>ep.episode_name.toLowerCase().includes(q)||String(ep.episode_number).includes(q));
-  if(type==='regular')  list = list.filter(ep=>(ep.type==='Regular'||!ep.type)&&ep.picks&&ep.picks.length>0);
-  else if(type!=='all') list = list.filter(ep=>ep.type===type);
+  if(type==='regular')  list = list.filter(ep=>(ep.category==='Regular'||!ep.category)&&ep.picks&&ep.picks.length>0);
+  else if(type!=='all') list = list.filter(ep=>ep.category===type);
   renderEpisodes(list);
 }
 function clearBrowse() {
@@ -1475,7 +1554,7 @@ function clearRecs() {
 // OVERLAY
 function openEp(num) {
   const ep=EPS.find(e=>e.episode_number===num); if(!ep) return;
-  document.getElementById('ov-num').textContent  = 'Episode '+ep.episode_number+(ep.type?' · '+ep.type:'');
+  document.getElementById('ov-num').textContent  = 'Episode '+ep.episode_number+(ep.category?' · '+ep.category:'');
   document.getElementById('ov-name').textContent = ep.episode_name;
   document.getElementById('ov-date').textContent = ep.release_date||'';
   const ua=document.getElementById('ov-url');
@@ -1510,7 +1589,7 @@ function buildDetail(ep) {
     h += `<div class="guest-banner">🎙 Guest${guests.length>1?'s':''}: ${guests.join(', ')}</div>`;
   }
 
-  const type = ep.type || 'Regular';
+  const type = ep.category || 'Regular';
 
   if (type === 'Year In Review') {
     h += buildYearPicks(ep);
