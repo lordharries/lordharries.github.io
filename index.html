@@ -1493,7 +1493,6 @@ function buildYearPicks(ep) {
 }
 
 // DATA TAB
-let dataInited=false;
 function initData() {
   if(dataInited) return; dataInited=true;
   const S=computeStats();
@@ -1583,14 +1582,12 @@ function drawChart() {
 }
 
 // TABS
-let activeTab='home';
 // ── PASSWORD LOCK ───────────────────────────────
 
 
 // ── RSS RECENT EPISODES ─────────────────────────────────────────────────
 const RSS_URL = 'https://feeds.acast.com/public/shows/the-podcast-nobody-asked-for';
 const RSS_PROXY = 'https://api.allorigins.win/raw?url=';
-let rssLoaded = false;
 
 function formatDuration(raw) {
   var parts = raw.split(':').map(Number);
