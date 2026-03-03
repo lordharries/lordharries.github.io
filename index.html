@@ -1676,15 +1676,21 @@ function initSite() {
     if (el) el[prop] = val;
   };
   const n = EPS.length;
+  const patreonCount = (typeof PATREON_DATA !== 'undefined')
+    ? (PATREON_DATA.undrafted ? PATREON_DATA.undrafted.length : 0)
+      + (PATREON_DATA.simple ? PATREON_DATA.simple.length : 0)
+    : 0;
+  const totalEps = n + patreonCount;
   const epW = EPS.filter(ep=>ep.picks.some(p=>p.final_rank===1)).length;
   const gPct = epW ? (S.gWins/epW*100).toFixed(1) : '0.0';
   const iPct = epW ? (S.iWins/epW*100).toFixed(1) : '0.0';
 
-  document.getElementById('header-sub').textContent = n+'+ episodes · Patreon Archive';
-  document.getElementById('stat-eps').textContent   = n+'+';
+  document.getElementById('header-sub').textContent = totalEps+' episodes · Patreon Archive';
+  document.getElementById('stat-eps').textContent   = totalEps;
   document.getElementById('stat-picks').textContent = S.tPicks.toLocaleString();
   document.getElementById('stat-recs').textContent  = S.tRecs.toLocaleString();
-  const mids = EPS.flatMap(ep=>ep.picks).filter(p=>p.pick&&p.pick.toLowerCase().includes('midsommar')).length;
+  const midsRecsAll = EPS.flatMap(ep=>ep.recommendations).filter(r=>r.recommendation&&r.recommendation.toLowerCase().includes('midsommar'));
+  const mids = midsRecsAll.reduce((sum,r)=>{ const m=r.recommendation.match(/(\d+)\s+times?/i); return sum+(m?parseInt(m[1],10):1); },0);
   document.getElementById('stat-mids').textContent  = mids;
 
   const topics = randomTopics();
@@ -1896,11 +1902,16 @@ function _drawRecs(recs) {
       isMids: key === 'midsommar'
     };
     byName[key].variants.add(raw);
-    byName[key].occurrences.push({
-      episode_number: r.episode_number,
-      episode_url:    r.episode_url || '',
-      recommended_by: r.recommended_by || ''
-    });
+    // Check for "(N times)" suffix — e.g. "Midsommar (69 times)"
+    const timesMatch = raw.match(/\((\d+)\s+times?\)/i);
+    const repeatCount = timesMatch ? parseInt(timesMatch[1], 10) : 1;
+    for(let i = 0; i < repeatCount; i++) {
+      byName[key].occurrences.push({
+        episode_number: r.episode_number,
+        episode_url:    r.episode_url || '',
+        recommended_by: r.recommended_by || ''
+      });
+    }
   });
 
   // Sort: Midsommar first, then Midsommar variants (alphabetical), then rest (alphabetical by count desc, then name)
@@ -2266,10 +2277,11 @@ function initData() {
   if(midsEl) midsEl.textContent = midsPicks.length;
   if(midsSub) midsSub.textContent = 'times Midsommar has been recommended or picked';
   const midsRecs = EPS.flatMap(ep=>ep.recommendations).filter(r=>r.recommendation&&r.recommendation.toLowerCase().includes('midsommar'));
+  const midsRecsCount = midsRecs.reduce((sum,r)=>{ const m=r.recommendation.match(/\((\d+)\s+times?\)/i); return sum+(m?parseInt(m[1],10):1); },0);
   const midsWins = midsPicks.filter(p=>p.final_rank===1).length;
   if(midsBr) midsBr.innerHTML =
     '<div style="font-size:12px;color:var(--muted);">🏆 '+midsWins+' times Midsommar finished 1st</div>'+
-    '<div style="font-size:12px;color:var(--muted);">📽️ '+midsRecs.length+' times recommended</div>'+
+    '<div style="font-size:12px;color:var(--muted);">📽️ '+midsRecsCount+' times recommended</div>'+
     '<div style="font-size:12px;color:var(--muted);">📺 '+midsPicks.filter(p=>p.picked_by==='Graham').length+' Graham picks · '+midsPicks.filter(p=>p.picked_by==='Ian').length+' Ian picks</div>';
 
   // ── Category breakdown ──────────────────────────────────────────────
