@@ -161,7 +161,7 @@ body::after {
 .lock-logo-wrap { position: relative; z-index: 1; margin-bottom: 22px; }
 .lock-logo {
   width: min(220px, 62vw); height: min(220px, 62vw);
-  object-fit: cover;
+  object-fit: contain;
   border: 3px solid rgba(27,79,140,0.3);
   box-shadow:
     0 0 0 6px rgba(245,200,0,0.2),
@@ -204,9 +204,14 @@ body::after {
 }
 
 .lock-welcome {
-  font-size: 13px; color: var(--muted); text-align: center;
+  font-size: 13px; color: var(--ink); text-align: center;
   line-height: 1.9; max-width: 420px; margin-bottom: 24px;
   font-style: italic; position: relative; z-index: 1;
+  background: rgba(250,250,247,0.92);
+  border: 1px solid rgba(27,79,140,0.15);
+  border-top: 3px solid var(--yellow);
+  padding: 18px 22px;
+  box-shadow: 0 2px 16px rgba(26,26,46,0.08);
 }
 .lock-welcome strong { color: var(--ink); font-style: normal; }
 .lock-form { width: min(320px, 88vw); text-align: center; position: relative; z-index: 1; }
@@ -353,10 +358,13 @@ main { flex: 1; position: relative; z-index: 1; }
 }
 .welcome-title span { color: var(--blue); }
 .welcome-sub {
-  font-size: 15px; line-height: 2.0; color: var(--muted);
+  font-size: 15px; line-height: 2.0; color: var(--ink);
   max-width: 460px;
-  border-left: 4px solid var(--yellow);
-  padding-left: 18px;
+  background: rgba(250,250,247,0.92);
+  border: 1px solid rgba(27,79,140,0.15);
+  border-top: 3px solid var(--yellow);
+  padding: 20px 24px;
+  box-shadow: 0 2px 16px rgba(26,26,46,0.08);
 }
 .welcome-sub em { color: var(--blue); font-style: italic; }
 .welcome-sub strong { color: var(--ink); font-weight: 400; }
