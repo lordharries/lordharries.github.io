@@ -855,6 +855,105 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
   .undrafted-lists { grid-template-columns: 1fr; }
 }
 
+
+/* ══ REQUEST TAB ══════════════════════════════════════════════ */
+.request-wrap { max-width: 760px; margin: 0 auto; padding: 52px 32px 80px; }
+
+.request-hero { text-align: center; margin-bottom: 40px; }
+.request-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .55em;
+  text-transform: uppercase; color: var(--blue); opacity: .7; margin-bottom: 14px;
+}
+.request-title {
+  font-family: 'Cinzel', serif; font-size: clamp(32px, 6vw, 58px);
+  color: var(--ink); line-height: .95; letter-spacing: .02em; margin-bottom: 28px;
+}
+
+.request-shout {
+  background: rgba(250,250,247,0.92);
+  border: 1px solid rgba(27,79,140,0.15);
+  border-left: 5px solid var(--blue);
+  padding: 22px 28px; margin-bottom: 24px; text-align: left;
+  box-shadow: 0 2px 16px rgba(26,26,46,0.07);
+}
+.request-shout p {
+  font-family: 'Cinzel', serif; font-size: clamp(13px, 2vw, 16px);
+  color: var(--ink); line-height: 1.6; margin-bottom: 10px; font-style: italic;
+}
+.request-shout p:last-child { margin-bottom: 0; }
+
+.request-lead {
+  font-family: 'Cinzel', serif; font-size: clamp(16px, 2.5vw, 22px);
+  color: var(--blue); font-weight: 700; letter-spacing: .03em;
+}
+
+.request-body-wrap {
+  background: rgba(250,250,247,0.94);
+  border: 1px solid rgba(27,79,140,0.15);
+  border-top: 3px solid var(--yellow);
+  padding: 36px 40px;
+  box-shadow: 0 2px 20px rgba(26,26,46,0.08);
+}
+.request-copy {
+  font-size: 15px; line-height: 1.85; color: var(--ink);
+  margin-bottom: 32px;
+}
+.request-copy strong { color: var(--blue); }
+
+.request-how { margin-bottom: 36px; }
+.request-how-title {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 14px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--yellow);
+}
+.request-step {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 11px 0; border-bottom: 1px solid rgba(27,79,140,0.08);
+  font-size: 14px; line-height: 1.6; color: var(--ink);
+}
+.request-step:last-child { border: none; }
+.request-step-n {
+  font-family: 'Cinzel', serif; font-size: 22px; color: var(--blue);
+  opacity: .35; line-height: 1; flex-shrink: 0; width: 28px;
+}
+.request-kc-link {
+  color: var(--blue); text-decoration: underline;
+}
+.request-kc-link:hover { color: var(--red); }
+
+.request-cta-wrap { text-align: center; margin-bottom: 36px; }
+.request-cta-btn {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .18em;
+  text-transform: uppercase; text-decoration: none;
+  background: var(--blue); color: var(--white);
+  padding: 18px 48px;
+  border-top: 3px solid var(--yellow);
+  box-shadow: 0 4px 24px rgba(27,79,140,0.28);
+  transition: all .2s;
+}
+.request-cta-btn:hover {
+  background: #0F3666;
+  box-shadow: 0 6px 32px rgba(27,79,140,0.4);
+  transform: translateY(-2px);
+}
+
+.request-sign {
+  text-align: center; padding-top: 24px;
+  border-top: 1px solid rgba(27,79,140,0.1);
+}
+.request-sign p {
+  font-family: 'Cinzel', serif; font-size: 15px; color: var(--muted);
+  margin-bottom: 6px; letter-spacing: .04em;
+}
+.request-sign p:last-child { color: var(--ink); font-size: 18px; }
+
+@media(max-width:600px){
+  .request-wrap { padding: 28px 16px 60px; }
+  .request-body-wrap { padding: 24px 20px; }
+}
+
 </style>
 </head>
 <body>
@@ -910,6 +1009,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     <button class="nav-tab" data-tab="patreon">Patreon Exclusives</button>
     <button class="nav-tab" data-tab="data">Data &amp; Stats</button>
     <button class="nav-tab" data-tab="hosts">Your Hosts</button>
+    <button class="nav-tab" data-tab="request">Request A Topic</button>
   </nav>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -924,6 +1024,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
   <button class="mobile-nav-item" data-tab="patreon">⭐ Patreon Exclusives</button>
   <button class="mobile-nav-item" data-tab="data">📊 Data &amp; Stats</button>
   <button class="mobile-nav-item" data-tab="hosts">🎙️ Your Hosts</button>
+  <button class="mobile-nav-item" data-tab="request">📩 Request A Topic</button>
   <div class="mobile-menu-footer">
     <p>A proud part of the <a href="https://www.podomedy.com" target="_blank">Podomedy Network</a></p>
   </div>
@@ -1147,9 +1248,9 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     <div class="d-eyebrow">Recognition</div>
     <div class="d-title">Award Nominations</div>
     <div class="awards-list">
-      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Tangent</div><div class="award-show">Golden Lobes</div><div class="award-year">2024 NOMINEE</div></div>
-      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Social Media</div><div class="award-show">Golden Lobes</div><div class="award-year">2024 NOMINEE</div></div>
-      <div class="award-item"><div class="award-trophy">🎙️</div><div class="award-name">Best Jingle</div><div class="award-show">Independent Podcast Awards</div><div class="award-year">2024 NOMINEE</div></div>
+      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Tangent</div><div class="award-show">Golden Lobes</div><div class="award-year">2025 NOMINEE</div></div>
+      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Social Media</div><div class="award-show">Golden Lobes</div><div class="award-year">2025 NOMINEE</div></div>
+      <div class="award-item"><div class="award-trophy">🎙️</div><div class="award-name">Best Jingle</div><div class="award-show">Independent Podcast Awards</div><div class="award-year">2025 NOMINEE</div></div>
     </div>
   </div>
 
@@ -1302,6 +1403,48 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+<!-- REQUEST -->
+<div class="view" id="view-request">
+  <div class="request-wrap">
+
+    <div class="request-hero">
+      <div class="request-eyebrow">✶ Patreon Exclusive ✶</div>
+      <h2 class="request-title">Request a Topic</h2>
+      <div class="request-shout">
+        <p>“WHY haven’t they done Top 3 Films Set Entirely In A Supermarket?”</p>
+        <p>“How has nobody forced them to rank Nicolas Cage wigs?”</p>
+        <p>“I need to hear Graham defend this absolute nonsense.”</p>
+      </div>
+      <p class="request-lead">Good news. You can make it happen.</p>
+    </div>
+
+    <div class="request-body-wrap">
+      <div class="request-body">
+        <p class="request-copy">As a subscriber to our glorious Patreon, you can submit a topic for us to argue about on a future episode of <strong>The Podcast Nobody Asked For</strong> or on one of our myriad of bonus episodes and it’ll go straight to the top of our list. That’s right. You become the person who did ask.</p>
+
+        <div class="request-how">
+          <div class="request-how-title">How it works</div>
+          <div class="request-step"><span class="request-step-n">01</span><span>Submit your topic idea via the form below.</span></div>
+          <div class="request-step"><span class="request-step-n">02</span><span>We’ll add it to the ever-growing, slightly chaotic master list.</span></div>
+          <div class="request-step"><span class="request-step-n">03</span><span>If it gets pulled — by fate, democracy, or the <a href="https://lordharries.github.io/kevincostnermk23000.github.io/" target="_blank" class="request-kc-link">Kevin Costner Mark II 3000</a> — we’ll argue about it properly.</span></div>
+          <div class="request-step"><span class="request-step-n">04</span><span>You’ll get a shout-out as the instigator.</span></div>
+        </div>
+
+        <div class="request-cta-wrap">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJ50WVyP3D7H0Dt0WQ8D2KPm1T2YTxQ5NwKoJuvJLeEYYuVQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="request-cta-btn">Request a Topic</a>
+        </div>
+
+        <div class="request-sign">
+          <p>Nobody asked for this podcast.</p>
+          <p><strong>But you can.</strong></p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
