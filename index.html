@@ -1729,6 +1729,54 @@ function initSite() {
   document.getElementById('i-pts').textContent      = iPtsTotal;
   document.getElementById('i-rate-bio').textContent = 'Wins '+iPct+'% of episodes';
 
+  // Populate Most Picked Films for each host
+  function renderHostFavs(hostName, elId) {
+    const counts = {};
+    EPS.forEach(ep => {
+      ep.picks.forEach(p => {
+        if (p.picked_by === hostName && p.pick) {
+          const k = p.pick.toLowerCase().trim();
+          counts[k] = (counts[k]||0) + 1;
+        }
+      });
+    });
+    // Also include undrafted picks if available
+    if (typeof PATREON_DATA !== 'undefined') {
+      (PATREON_DATA.undrafted_picks||[]).forEach(p => {
+        if (p.picker === hostName && p.pick) {
+          const k = p.pick.toLowerCase().trim();
+          counts[k] = (counts[k]||0) + 1;
+        }
+      });
+    }
+    const allPicksList = EPS.flatMap(ep => ep.picks).map(p => p.pick);
+    const top = Object.entries(counts)
+      .sort((a,b) => b[1]-a[1])
+      .slice(0,5)
+      .map(([k,v]) => {
+        const display = allPicksList.find(p => p && p.toLowerCase().trim() === k) || k;
+        return {name: display, count: v};
+      });
+    const el = document.getElementById(elId);
+    if (!el) return;
+    if (top.length === 0) { el.innerHTML = '<div style="padding:6px 8px;font-size:11px;color:var(--muted);">No picks data</div>'; return; }
+    const maxCount = top[0].count;
+    el.innerHTML = top.map((item, i) => {
+      const pct = (item.count / maxCount * 100).toFixed(1);
+      return '<div class="hb-row" style="padding:4px 6px;font-size:11px;">'
+        + '<div class="hb-lbl" title="'+esc(item.name)+'" style="font-size:10px;max-width:120px;">'+esc(item.name)+'</div>'
+        + '<div class="hb-track" style="height:6px;flex:1;margin:0 6px;"><div class="hb-fill" data-w="'+pct+'%" style="transition-delay:'+(0.1+i*0.05)+'s;height:6px;"></div></div>'
+        + '<div class="hb-val" style="font-size:10px;min-width:20px;">'+item.count+'×</div>'
+        + '</div>';
+    }).join('');
+    // Trigger animations
+    setTimeout(() => {
+      el.querySelectorAll('.hb-fill').forEach(b => { b.style.width = b.dataset.w; });
+    }, 300);
+  }
+  renderHostFavs('Graham', 'graham-favs');
+  renderHostFavs('Ian', 'ian-favs');
+
   renderEpisodes(EPS);
   const flatRecs = EPS.flatMap(ep=>ep.recommendations.map(r=>Object.assign({},r,{
     episode_name:ep.episode_name,
