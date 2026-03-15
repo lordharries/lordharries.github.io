@@ -1680,8 +1680,10 @@ function computeStats() {
 }
 
 function randomExpect() {
-  const shuffled = [...HERO_POOL].sort(()=>Math.random()-.5);
-  return [shuffled[0], shuffled[1], shuffled[2]];
+  const items = EPS.flatMap(ep => ep.expect_items || []).filter(Boolean);
+  if (!items.length) return ['films', 'podcasts', 'Midsommar'];
+  const shuffled = [...items].sort(()=>Math.random()-.5);
+  return [shuffled[0], shuffled[1] || shuffled[0], shuffled[2] || shuffled[0]];
 }
 function randomTopics() {
   const reg = EPS.filter(ep =>
