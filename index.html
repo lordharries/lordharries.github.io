@@ -980,6 +980,21 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
 .vote-bar-labels{display:flex;justify-content:space-between;font-size:12px;}
 .vbl-g{color:var(--red);font-weight:600;}
 .vbl-i{color:var(--blue);font-weight:600;}
+
+/* ── DATA PAGE SECTION DIVIDERS ─────────────────────────────────────── */
+.data-section-header {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 14px;
+  padding: 22px 0 8px 0;
+  border-top: 3px solid var(--yellow);
+  margin-top: 8px;
+}
+.data-section-header:first-child { border-top: none; padding-top: 8px; margin-top: 0; }
+.data-section-title {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .25em;
+  text-transform: uppercase; color: var(--blue); white-space: nowrap;
+}
+.data-section-line { flex: 1; height: 1px; background: var(--border2); }
 </style>
 </head>
 <body>
@@ -1154,7 +1169,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
 <div class="view" id="view-data">
   <div class="data-wrap" id="data-wrap">
 
-  <!-- Summary stats -->
+  <div class="data-section-header"><span class="data-section-title">Overview</span><span class="data-section-line"></span></div>
   <div class="d-card d-s3">
     <div class="d-eyebrow">Total</div>
     <div class="d-title">Episodes</div>
@@ -1179,7 +1194,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
   <!-- Ian wins card -->
   <div class="d-card d-s3" style="display:none;"><div id="d-iwins">—</div><div id="d-iwins-sub"></div></div>
 
-  <!-- Win rate -->
+  <div class="data-section-header"><span class="data-section-title">Head to Head</span><span class="data-section-line"></span></div>
   <div class="d-card d-s6">
     <div class="d-eyebrow">Overall</div>
     <div class="d-title">Who's Winning?</div>
@@ -1226,7 +1241,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     <div class="ww-note" id="ww-note"></div>
   </div>
 
-  <!-- Top episodes (bar chart) -->
+  <div class="data-section-header"><span class="data-section-title">Picks Analysis</span><span class="data-section-line"></span></div>
   <div class="d-card d-s6">
     <div class="d-eyebrow">Topics</div>
     <div class="d-title">Most Picked Topics</div>
@@ -1241,7 +1256,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     <div class="yr-lbls" id="yr-lbls"></div>
   </div>
 
-  <!-- Recommendation Venn -->
+  <div class="data-section-header"><span class="data-section-title">Recommendations</span><span class="data-section-line"></span></div>
   <div class="d-card d-s4">
     <div class="d-eyebrow">Recommendations</div>
     <div class="d-title">Who Recommends More?</div>
@@ -1297,7 +1312,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     </div>
   </div>
 
-  <!-- First pick wins -->
+  <div class="data-section-header"><span class="data-section-title">Undrafted</span><span class="data-section-line"></span></div>
   <div class="d-card d-s4">
     <div class="d-eyebrow">Undrafted</div>
     <div class="d-title">First Pick Advantage</div>
@@ -1324,7 +1339,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     </div>
   </div>
 
-  <!-- Most Midsommar episodes -->
+  <div class="data-section-header"><span class="data-section-title">Running Jokes &amp; Records</span><span class="data-section-line"></span></div>
   <div class="d-card d-s4">
     <div class="d-eyebrow">Running Joke</div>
     <div class="d-title">Midsommar by Numbers</div>
@@ -1435,11 +1450,17 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
       <div class="host-name">Graham</div>
       <div class="host-role">Co-Host · The Competitive One</div>
       <p class="host-bio" id="graham-bio"><span id="g-rate-bio"></span></p>
-      <div class="host-hstats" id="graham-stats">
-      <div class="hhstat"><div class="hhstat-num" id="g-wins" style="color:var(--red);">—</div><div class="hhstat-lbl">Wins</div></div>
-      <div class="hhstat"><div class="hhstat-num" id="g-rate">—</div><div class="hhstat-lbl">Win %</div></div>
-      <div class="hhstat"><div class="hhstat-num" id="g-pts" style="color:var(--yellow);">—</div><div class="hhstat-lbl">Points</div></div>
-    </div>
+      <div class="host-hstats" id="graham-stats" style="grid-template-columns:repeat(3,1fr);">
+        <div class="hhstat"><div class="hhstat-num" id="g-wins" style="color:var(--red);">—</div><div class="hhstat-lbl">Wins</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-rate">—</div><div class="hhstat-lbl">Win %</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-pts" style="color:var(--yellow);">—</div><div class="hhstat-lbl">Points</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-unique">—</div><div class="hhstat-lbl">Unique Picks</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-total-picks">—</div><div class="hhstat-lbl">Total Picks</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-recs">—</div><div class="hhstat-lbl">Recs Made</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-accuracy">—</div><div class="hhstat-lbl">#1 Accuracy</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-best-year">—</div><div class="hhstat-lbl">Best Year</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-streak">—</div><div class="hhstat-lbl">Best Streak</div></div>
+      </div>
       <div class="host-favs-title">Most Picked Films</div>
       <div class="host-favs" id="graham-favs"></div>
     </div>
@@ -1448,11 +1469,17 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
       <div class="host-name">Ian</div>
       <div class="host-role">Co-Host · The Contrarian One</div>
       <p class="host-bio" id="ian-bio"><span id="i-rate-bio"></span></p>
-      <div class="host-hstats" id="ian-stats">
-      <div class="hhstat"><div class="hhstat-num" id="i-wins" style="color:var(--yellow);">—</div><div class="hhstat-lbl">Wins</div></div>
-      <div class="hhstat"><div class="hhstat-num" id="i-rate">—</div><div class="hhstat-lbl">Win %</div></div>
-      <div class="hhstat"><div class="hhstat-num" id="i-pts" style="color:var(--red);">—</div><div class="hhstat-lbl">Points</div></div>
-    </div>
+      <div class="host-hstats" id="ian-stats" style="grid-template-columns:repeat(3,1fr);">
+        <div class="hhstat"><div class="hhstat-num" id="i-wins" style="color:var(--blue);">—</div><div class="hhstat-lbl">Wins</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-rate">—</div><div class="hhstat-lbl">Win %</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-pts" style="color:var(--yellow);">—</div><div class="hhstat-lbl">Points</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-unique">—</div><div class="hhstat-lbl">Unique Picks</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-total-picks">—</div><div class="hhstat-lbl">Total Picks</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-recs">—</div><div class="hhstat-lbl">Recs Made</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-accuracy">—</div><div class="hhstat-lbl">#1 Accuracy</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-best-year">—</div><div class="hhstat-lbl">Best Year</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-streak">—</div><div class="hhstat-lbl">Best Streak</div></div>
+      </div>
       <div class="host-favs-title">Most Picked Films</div>
       <div class="host-favs" id="ian-favs"></div>
     </div>
@@ -1765,6 +1792,54 @@ function initSite() {
   document.getElementById('i-rate').textContent     = iPct+'%';
   document.getElementById('i-pts').textContent      = iPtsTotal;
   document.getElementById('i-rate-bio').textContent = 'Wins '+iPct+'% of episodes';
+
+  // Extra host stats
+  document.getElementById('g-unique').textContent = S.gUnique;
+  document.getElementById('i-unique').textContent = S.iUnique;
+  document.getElementById('g-total-picks').textContent = S.gPicks;
+  document.getElementById('i-total-picks').textContent = S.iPicks;
+
+  // Recs made by each host
+  const gRecsCount = EPS.reduce((s,ep)=>s+(ep.recommendations||[]).filter(r=>r.recommended_by&&r.recommended_by.toLowerCase().includes('graham')).length,0);
+  const iRecsCount = EPS.reduce((s,ep)=>s+(ep.recommendations||[]).filter(r=>r.recommended_by&&r.recommended_by.toLowerCase().includes('ian')).length,0);
+  document.getElementById('g-recs').textContent = gRecsCount;
+  document.getElementById('i-recs').textContent = iRecsCount;
+
+  // Personal #1 accuracy (how often their personal #1 won)
+  const gP1  = EPS.flatMap(ep=>ep.picks).filter(p=>p.picked_by==='Graham'&&p.personal_rank===1);
+  const iP1  = EPS.flatMap(ep=>ep.picks).filter(p=>p.picked_by==='Ian'&&p.personal_rank===1);
+  const gAcc = gP1.length ? Math.round(gP1.filter(p=>p.final_rank===1).length/gP1.length*100)+'%' : '—';
+  const iAcc = iP1.length ? Math.round(iP1.filter(p=>p.final_rank===1).length/iP1.length*100)+'%' : '—';
+  document.getElementById('g-accuracy').textContent = gAcc;
+  document.getElementById('i-accuracy').textContent = iAcc;
+
+  // Best year (most wins in a single year)
+  const winsByYear = (name) => {
+    const byYear = {};
+    EPS.forEach(ep => {
+      const yr = ep.release_date ? ep.release_date.split('/')[2] : null;
+      if (!yr) return;
+      const won = ep.picks.some(p=>p.picked_by===name&&p.final_rank===1);
+      if (won) byYear[yr] = (byYear[yr]||0)+1;
+    });
+    const best = Object.entries(byYear).sort((a,b)=>b[1]-a[1])[0];
+    return best ? best[0] : '—';
+  };
+  document.getElementById('g-best-year').textContent = winsByYear('Graham');
+  document.getElementById('i-best-year').textContent = winsByYear('Ian');
+
+  // Best win streak
+  const bestStreak = (name) => {
+    const eps = EPS.filter(ep=>ep.picks.some(p=>p.final_rank===1));
+    let best=0, cur=0;
+    eps.forEach(ep=>{
+      if(ep.picks.some(p=>p.picked_by===name&&p.final_rank===1)){cur++;best=Math.max(best,cur);}
+      else cur=0;
+    });
+    return best;
+  };
+  document.getElementById('g-streak').textContent = bestStreak('Graham');
+  document.getElementById('i-streak').textContent = bestStreak('Ian');
 
   // Populate Most Picked Films for each host
   function renderHostFavs(hostName, elId) {
