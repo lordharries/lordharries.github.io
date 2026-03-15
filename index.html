@@ -168,7 +168,7 @@ body::after {
 }
 .lock-logo-wrap { position: relative; z-index: 1; margin-bottom: 22px; }
 .lock-logo {
-  width: min(220px, 62vw); height: min(220px, 62vw);
+  width: min(220px, 62vw); height: auto; max-height: min(280px, 70vw);
   object-fit: contain;
   border: 3px solid rgba(27,79,140,0.3);
   box-shadow:
@@ -408,7 +408,7 @@ main { flex: 1; position: relative; z-index: 1; overflow-x: hidden; }
   position: sticky; top: 78px; z-index: 100;
   box-shadow: 0 2px 16px rgba(26,26,46,0.06);
 }
-.sec-bar + * { padding-top: 12px; }
+.sec-bar + * { padding-top: 20px; margin-top: 8px; }
 .sec-bar-title {
   font-family: 'Cinzel', serif; font-size: 10px;
   letter-spacing: .22em; text-transform: uppercase;
