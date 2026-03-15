@@ -1560,8 +1560,7 @@ function checkPassword(){
     document.getElementById('site-wrap').style.display = 'flex';
     document.getElementById('lock-input').value = '';
     err.textContent = '';
-    switchTab('home');
-    try { loadData(); } catch(e) { console.error('loadData error:', e); }
+    loadData().catch(e => console.error('loadData error:', e));
   } else {
     err.textContent = 'Incorrect password. Try again.';
     document.getElementById('lock-input').value = '';
@@ -1814,6 +1813,7 @@ function initSite() {
     episode_url: r.episode_url || ep.episode_url
   })));
   renderRecs(flatRecs);
+  switchTab('home');
 }
 
 // BROWSE
