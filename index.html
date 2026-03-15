@@ -1623,6 +1623,7 @@ async function loadData() {
   if(window._PATREON_OVERRIDE) {
     Object.assign(PATREON_DATA, window._PATREON_OVERRIDE);
   }
+  console.log('loadData complete — EPS:', EPS.length, 'PATREON_DATA.undrafted:', PATREON_DATA.undrafted.length);
   initSite();
 }
 
