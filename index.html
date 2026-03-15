@@ -1612,11 +1612,11 @@ async function loadData() {
     }
     catch(e) {
       console.error('Failed to fetch data.json:', e);
-      document.getElementById('app').innerHTML = '<div style="color:white;padding:40px;font-family:sans-serif;text-align:center"><h2>Failed to load episode data</h2><p>Could not fetch data.json. Check your connection or try again.</p><button onclick="location.reload()" style="padding:10px 20px;cursor:pointer">Retry</button></div>';
+      alert('Failed to load data: ' + e.message);
       return;
     }
   } else {
-    document.getElementById('app').innerHTML = '<div style="color:white;padding:40px;font-family:sans-serif;text-align:center"><h2>No data URL configured</h2></div>';
+    console.error('No DATA_URL configured');
     return;
   }
   // Use live patreon data if available, otherwise fall back to hardcoded
