@@ -1169,6 +1169,7 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
 <div class="view" id="view-data">
   <div class="data-wrap" id="data-wrap">
 
+  <!-- ── OVERVIEW ─────────────────────────────────────────────────────── -->
   <div class="data-section-header"><span class="data-section-title">Overview</span><span class="data-section-line"></span></div>
   <div class="d-card d-s3">
     <div class="d-eyebrow">Total</div>
@@ -1186,14 +1187,51 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     <div class="big-num" id="d-unique">—</div>
   </div>
   <div class="d-card d-s3">
-    <div class="d-eyebrow">Graham</div>
+    <div class="d-eyebrow">Most</div>
     <div class="d-title">Episode Wins</div>
     <div class="big-num" id="d-gwins" style="color:var(--red);">—</div>
     <div class="big-sub" id="d-gwins-sub"></div>
   </div>
-  <!-- Ian wins card -->
   <div class="d-card d-s3" style="display:none;"><div id="d-iwins">—</div><div id="d-iwins-sub"></div></div>
 
+  <!-- ── REGULAR EPISODES ───────────────────────────────────────────────── -->
+  <div class="data-section-header"><span class="data-section-title">Regular Episodes</span><span class="data-section-line"></span></div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Episodes</div>
+    <div class="d-title">Episode Types</div>
+    <div id="cat-chart" style="display:flex;flex-direction:column;gap:6px;"></div>
+  </div>
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Episode Titles</div>
+    <div class="d-title">Title Trivia</div>
+    <div id="title-stats-wrap"></div>
+    <div style="margin-top:16px;">
+      <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;color:var(--muted);margin-bottom:8px;">AVG LENGTH BY YEAR</div>
+      <div id="title-year-chart" style="display:flex;flex-direction:column;gap:5px;"></div>
+    </div>
+  </div>
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Episodes</div>
+    <div class="d-title">Episodes Per Year</div>
+    <div class="yr-chart" id="yr-chart"></div>
+    <div class="yr-lbls" id="yr-lbls"></div>
+  </div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Recognition</div>
+    <div class="d-title">Award Nominations</div>
+    <div class="awards-list">
+      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Tangent</div><div class="award-show">Golden Lobes</div><div class="award-year">2025 NOMINEE</div></div>
+      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Social Media</div><div class="award-show">Golden Lobes</div><div class="award-year">2025 NOMINEE</div></div>
+      <div class="award-item"><div class="award-trophy">🎙️</div><div class="award-name">Best Jingle</div><div class="award-show">Independent Podcast Awards</div><div class="award-year">2025 NOMINEE</div></div>
+    </div>
+  </div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">More Trivia</div>
+    <div class="d-title">Episode Records</div>
+    <div id="ep-records-wrap" style="display:flex;flex-direction:column;gap:8px;"></div>
+  </div>
+
+  <!-- ── HEAD TO HEAD ───────────────────────────────────────────────────── -->
   <div class="data-section-header"><span class="data-section-title">Head to Head</span><span class="data-section-line"></span></div>
   <div class="d-card d-s6">
     <div class="d-eyebrow">Overall</div>
@@ -1202,8 +1240,6 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     <div class="wr-row"><div class="wr-name" style="color:var(--yellow);">Ian</div><div class="wr-track"><div class="wr-fill" id="wrf-i" style="background:var(--yellow);"></div></div><div class="wr-pct" id="wr-i-pct">—</div></div>
     <div class="wr-note" id="wr-note"></div>
   </div>
-
-  <!-- Picks matrix -->
   <div class="d-card d-s6">
     <div class="d-eyebrow">Breakdown</div>
     <div class="d-title">Rank Distribution</div>
@@ -1220,8 +1256,6 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
       <div class="mx-c"><div class="mx-big" id="mx-i3">—</div><div class="mx-sub">picks</div></div>
     </div>
   </div>
-
-  <!-- Who's Winning chart -->
   <div class="d-card d-s12">
     <div class="d-eyebrow">Over Time</div>
     <div class="d-title">Cumulative Score</div>
@@ -1240,146 +1274,12 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     </div>
     <div class="ww-note" id="ww-note"></div>
   </div>
-
-  <div class="data-section-header"><span class="data-section-title">Picks Analysis</span><span class="data-section-line"></span></div>
-  <div class="d-card d-s6">
-    <div class="d-eyebrow">Topics</div>
-    <div class="d-title">Most Picked Topics</div>
-    <div id="hb-chart"></div>
-  </div>
-
-  <!-- Episodes per year -->
-  <div class="d-card d-s6">
-    <div class="d-eyebrow">Episodes</div>
-    <div class="d-title">Episodes Per Year</div>
-    <div class="yr-chart" id="yr-chart"></div>
-    <div class="yr-lbls" id="yr-lbls"></div>
-  </div>
-
-  <div class="data-section-header"><span class="data-section-title">Recommendations</span><span class="data-section-line"></span></div>
-  <div class="d-card d-s4">
-    <div class="d-eyebrow">Recommendations</div>
-    <div class="d-title">Who Recommends More?</div>
-    <div class="venn">
-      <div class="vc g"><div class="vc-n" id="venn-g">—</div><div class="vc-l">Graham</div></div>
-      <div class="vc i"><div class="vc-n" id="venn-i">—</div><div class="vc-l">Ian</div></div>
-      <div class="vm"><div class="vm-n" id="venn-mid">—</div><div class="vm-l">Both</div></div>
-    </div>
-    <div class="venn-note" id="venn-note"></div>
-  </div>
-
-  <!-- Win rate by year -->
-  <div class="d-card d-s6">
-    <div class="d-eyebrow">Performance Over Time</div>
-    <div class="d-title">Win Rate By Year</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Percentage of episodes won per calendar year (standard episodes only).</div>
-    <div id="wry-chart" style="display:flex;flex-direction:column;gap:6px;"></div>
-  </div>
-
-  <!-- Personal rank accuracy -->
-  <div class="d-card d-s6">
-    <div class="d-eyebrow">Pick Intelligence</div>
-    <div class="d-title">Personal #1 Accuracy</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">How often does each person's top personal pick end up winning?</div>
-    <div id="accuracy-wrap" style="display:flex;flex-direction:column;gap:8px;"></div>
-  </div>
-
-  <!-- Contrarian score -->
-  <div class="d-card d-s6">
-    <div class="d-eyebrow">Bold Choices</div>
-    <div class="d-title">Contrarian Score</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">How often does each person's top personal pick end up completely unranked?</div>
-    <div id="contrarian-wrap" style="display:flex;flex-direction:column;gap:8px;"></div>
-    <div style="margin-top:12px;font-size:11px;color:var(--muted);font-style:italic;line-height:1.6;" id="contrarian-eg"></div>
-  </div>
-
-  <!-- Recs later picked -->
-  <div class="d-card d-s8">
-    <div class="d-eyebrow">Prophecy</div>
-    <div class="d-title">Recommendations Later Picked</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Films recommended on the podcast that eventually became episode picks. Excludes Midsommar (obviously).</div>
-    <div id="crossover-list" style="display:flex;flex-direction:column;"></div>
-  </div>
-
-  <!-- Title stats -->
-  <div class="d-card d-s4">
-    <div class="d-eyebrow">Episode Titles</div>
-    <div class="d-title">Title Trivia</div>
-    <div id="title-stats-wrap"></div>
-    <div style="margin-top:16px;">
-      <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;color:var(--muted);margin-bottom:8px;">AVG LENGTH BY YEAR</div>
-      <div id="title-year-chart" style="display:flex;flex-direction:column;gap:5px;"></div>
-    </div>
-  </div>
-
-  <div class="data-section-header"><span class="data-section-title">Undrafted</span><span class="data-section-line"></span></div>
-  <div class="d-card d-s4">
-    <div class="d-eyebrow">Undrafted</div>
-    <div class="d-title">First Pick Advantage</div>
-    <div style="font-family:'Cinzel',serif;font-size:48px;color:var(--blue);line-height:1;" id="fp-pct">—</div>
-    <div style="font-size:12px;color:var(--muted);margin-top:4px;margin-bottom:16px;" id="fp-sub"></div>
-    <div id="fp-breakdown" style="display:flex;flex-direction:column;gap:6px;"></div>
-  </div>
-
-  <!-- Biggest snub -->
-  <div class="d-card d-s4">
-    <div class="d-eyebrow">Unlucky</div>
-    <div class="d-title">Biggest Snubs</div>
-    <div class="snub-list" id="snub-list"></div>
-  </div>
-
-  <!-- Awards -->
-  <div class="d-card d-s4">
-    <div class="d-eyebrow">Recognition</div>
-    <div class="d-title">Award Nominations</div>
-    <div class="awards-list">
-      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Tangent</div><div class="award-show">Golden Lobes</div><div class="award-year">2025 NOMINEE</div></div>
-      <div class="award-item"><div class="award-trophy">🏆</div><div class="award-name">Best Social Media</div><div class="award-show">Golden Lobes</div><div class="award-year">2025 NOMINEE</div></div>
-      <div class="award-item"><div class="award-trophy">🎙️</div><div class="award-name">Best Jingle</div><div class="award-show">Independent Podcast Awards</div><div class="award-year">2025 NOMINEE</div></div>
-    </div>
-  </div>
-
-  <div class="data-section-header"><span class="data-section-title">Running Jokes &amp; Records</span><span class="data-section-line"></span></div>
-  <div class="d-card d-s4">
-    <div class="d-eyebrow">Running Joke</div>
-    <div class="d-title">Midsommar by Numbers</div>
-    <div id="mids-stats-wrap">
-      <div style="font-family:'Cinzel',serif;font-size:48px;color:var(--red);line-height:1;" id="mids-big">—</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="mids-sub"></div>
-      <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;" id="mids-breakdown"></div>
-    </div>
-  </div>
-
-  <!-- Pick type donut (canvas) -->
-  <div class="d-card d-s4">
-    <div class="d-eyebrow">Undrafted</div>
-    <div class="d-title">Undrafted Scoreboard</div>
-    <div id="undrafted-scoreboard" style="display:flex;flex-direction:column;gap:6px;"></div>
-  </div>
-
-  <!-- Undrafted vote stats -->
-  <div class="d-card d-s6">
-    <div class="d-eyebrow">Undrafted</div>
-    <div class="d-title">Audience Vote Stats</div>
-    <div id="vstats-wrap" style="display:flex;flex-direction:column;"></div>
-  </div>
-
-  <!-- Longest streak -->
   <div class="d-card d-s4">
     <div class="d-eyebrow">Standard Episodes</div>
     <div class="d-title">Win Streaks</div>
     <div id="streak-wrap" style="display:flex;flex-direction:column;gap:8px;"></div>
   </div>
-
-  <!-- Category breakdown bar -->
-  <div class="d-card d-s6">
-    <div class="d-eyebrow">Episodes</div>
-    <div class="d-title">Episode Types</div>
-    <div id="cat-chart" style="display:flex;flex-direction:column;gap:6px;"></div>
-  </div>
-
-  <!-- Graham vs Ian head to head -->
-  <div class="d-card d-s6">
+  <div class="d-card d-s8">
     <div class="d-eyebrow">Head to Head</div>
     <div class="d-title">Points Breakdown</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(61,107,50,0.12);margin-bottom:10px;">
@@ -1399,6 +1299,86 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
       </div>
     </div>
     <div style="font-size:11px;color:var(--muted);" id="h2h-note"></div>
+  </div>
+
+  <!-- ── PICKS ANALYSIS ─────────────────────────────────────────────────── -->
+  <div class="data-section-header"><span class="data-section-title">Picks Analysis</span><span class="data-section-line"></span></div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Topics</div>
+    <div class="d-title">Most Picked Topics</div>
+    <div id="hb-chart"></div>
+  </div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Performance Over Time</div>
+    <div class="d-title">Win Rate By Year</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Percentage of episodes won per calendar year (standard episodes only).</div>
+    <div id="wry-chart" style="display:flex;flex-direction:column;gap:6px;"></div>
+  </div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Pick Intelligence</div>
+    <div class="d-title">Personal #1 Accuracy</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">How often does each person's top personal pick end up winning?</div>
+    <div id="accuracy-wrap" style="display:flex;flex-direction:column;gap:8px;"></div>
+  </div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Bold Choices</div>
+    <div class="d-title">Contrarian Score</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">How often does each person's top personal pick end up completely unranked?</div>
+    <div id="contrarian-wrap" style="display:flex;flex-direction:column;gap:8px;"></div>
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);font-style:italic;line-height:1.6;" id="contrarian-eg"></div>
+  </div>
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Unlucky</div>
+    <div class="d-title">Biggest Snubs</div>
+    <div class="snub-list" id="snub-list"></div>
+  </div>
+
+  <!-- ── RECOMMENDATIONS ────────────────────────────────────────────────── -->
+  <div class="data-section-header"><span class="data-section-title">Recommendations</span><span class="data-section-line"></span></div>
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Recommendations</div>
+    <div class="d-title">Who Recommends More?</div>
+    <div class="venn">
+      <div class="vc g"><div class="vc-n" id="venn-g">—</div><div class="vc-l">Graham</div></div>
+      <div class="vc i"><div class="vc-n" id="venn-i">—</div><div class="vc-l">Ian</div></div>
+      <div class="vm"><div class="vm-n" id="venn-mid">—</div><div class="vm-l">Both</div></div>
+    </div>
+    <div class="venn-note" id="venn-note"></div>
+  </div>
+  <div class="d-card d-s8">
+    <div class="d-eyebrow">Prophecy</div>
+    <div class="d-title">Recommendations Later Picked</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Films recommended on the podcast that eventually became episode picks. Excludes Midsommar (obviously).</div>
+    <div id="crossover-list" style="display:flex;flex-direction:column;"></div>
+  </div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Running Joke</div>
+    <div class="d-title">Midsommar by Numbers</div>
+    <div id="mids-stats-wrap">
+      <div style="font-family:'Cinzel',serif;font-size:48px;color:var(--red);line-height:1;" id="mids-big">—</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="mids-sub">times recommended</div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;" id="mids-breakdown"></div>
+    </div>
+  </div>
+
+  <!-- ── UNDRAFTED ───────────────────────────────────────────────────────── -->
+  <div class="data-section-header"><span class="data-section-title">Undrafted</span><span class="data-section-line"></span></div>
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Undrafted</div>
+    <div class="d-title">First Pick Advantage</div>
+    <div style="font-family:'Cinzel',serif;font-size:48px;color:var(--blue);line-height:1;" id="fp-pct">—</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:4px;margin-bottom:16px;" id="fp-sub"></div>
+    <div id="fp-breakdown" style="display:flex;flex-direction:column;gap:6px;"></div>
+  </div>
+  <div class="d-card d-s4">
+    <div class="d-eyebrow">Undrafted</div>
+    <div class="d-title">Undrafted Scoreboard</div>
+    <div id="undrafted-scoreboard" style="display:flex;flex-direction:column;gap:6px;"></div>
+  </div>
+  <div class="d-card d-s6">
+    <div class="d-eyebrow">Undrafted</div>
+    <div class="d-title">Audience Vote Stats</div>
+    <div id="vstats-wrap" style="display:flex;flex-direction:column;"></div>
   </div>
 
 </div><!-- end data-wrap -->
@@ -1445,41 +1425,68 @@ canvas#ww-canvas { width: 100%; height: 100%; display: block; }
     </div>
   </div>
   <div class="host-cards">
+    <!-- ── GRAHAM ── -->
     <div class="host-card gc">
-      <div class="host-avatar-wrap"><img class="host-avatar-img" src="data:image/webp;base64,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" alt="Graham"></div>
-      <div class="host-name">Graham</div>
-      <div class="host-role">Co-Host · The Competitive One</div>
-      <p class="host-bio" id="graham-bio"><span id="g-rate-bio"></span></p>
-      <div class="host-hstats" id="graham-stats" style="grid-template-columns:repeat(3,1fr);">
-        <div class="hhstat"><div class="hhstat-num" id="g-wins" style="color:var(--red);">—</div><div class="hhstat-lbl">Wins</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="g-rate">—</div><div class="hhstat-lbl">Win %</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="g-pts" style="color:var(--yellow);">—</div><div class="hhstat-lbl">Points</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="g-unique">—</div><div class="hhstat-lbl">Unique Picks</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="g-total-picks">—</div><div class="hhstat-lbl">Total Picks</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="g-recs">—</div><div class="hhstat-lbl">Recs Made</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="g-accuracy">—</div><div class="hhstat-lbl">#1 Accuracy</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="g-best-year">—</div><div class="hhstat-lbl">Best Year</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="g-streak">—</div><div class="hhstat-lbl">Best Streak</div></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;">
+        <div class="host-avatar-wrap" style="flex-shrink:0;"><img class="host-avatar-img" src="data:image/webp;base64,UklGRkwRAABXRUJQVlA4IEARAAAQTgCdASoYARgBPlEmkUYjoiGhIzGJMHAKCWNu4XShCCAf3Ls/rjeT/Jj8uvnHqb9Z/Dn9U/XPkVzK9mn8P+yfjd81v9J6n/0V/2fcA/VTpHeYT9kf+r/ovdT/3v6o+6b+sf5//if5H4C/7H/j+tO/wf+q9gT+Y/6D00/27+FX9t/2/9pX/260Cwn/a+JPlu9j+33IhiF9r/7Hzm8E+AX7T3lv2Pmr9ldagoE/zj/AehtoOesfYR6X/o6Czz0+9ZUzSSp56fesi3gvhnVJKnnp946aDZ5/5Rqra9/7WLw15wtApZ8VT5ChWrz0oZBcsUXaym2En/vOmz9NpQnbP5iipcpde5jMjDivgKIdF1UqZpDydCIZdpnbC5kyjJotRxA60iFKQQXD0qG6voSP7EDgPyoexLYvcgpA31L4Btr8NbULFTG/ewLk55qcUfbVFdrKlfwQETWVAtp5xd7QUAugHGQMsPg3RTz07d2N+TzChXsKmVQ9ljKOy8xBlJKqhRYVM4VOMP/FzUd+F7YpU42sqZoJNJJsbF0VDxNV3LLC6kjOdtHn9YEVjEDfGiIgYQkkByB2K+QXnEb6fhGb89UOiKemzChGrQHXAGwAs68aOOpLSU+9ZUrfyXxp0Fyu8PcpQSa8RAGUdujBm9rbY8D49iuXNlJKnjVi1l6sEryKrAHo7Xkc/GDXZ+vCogm/f89lTNJKmmhY00166UzJGPfLc9V8pKVM0kd4BCc33fLHi30OeIVkZZOS2N3OEFbT9fNHuO/FUg8NC8fwKi7WVMA879jM77p4f85WNjy1g27eHjJItjgu1lTNJKnnym9ZUzSSp56fesqZnoAA/v7kQ/+dB/zoP+dB/Og//p4zotGuCAAASmrFddlCilBVPNXQhmAAeaHCInOQW7Tx3SigJnk5p4S1Plm75W2V7M08tZmM3lstZFUPgUwhb+hm0BMs1zW0ji6p9qSngzqNeZ4WVhOtWtSLWpGzDg/oSdafAG++WZtwiTzAD8f7z3FNFmSA1EW2ojjZvlUYnF5M1WyGbs08be9GHpVi+YBj/44WxAwoQywWwD4ZxwXKuCmTCBGXV2t2PAR94X/bwGigE3px7TX8NSJ6UY18kB2NF1uDVqwQS1Y0C31+IHw3QUIEkeZNBh7vKoa2h5qfvTgCLhVyHoxQCIXMvh2/r6FGh1V8eqnLWlDL9ykxyDdKU6jRpR1aw7oVABqntnymQgHLKkedUT3RrXWVaYova0i2kHP/7kEs5oHAnIJiKmDCVzQfF9M0wxKLiPMFtes2kU5FXmdgkqyYNiSmqflpHgl+Qi+ZJGu3Ho9JD8zz3mx6Xx2zf7v971gJhN21H+ByvaqDuu17euNl0FsAfg+WCvgOIf7RshFE+b8Buu2wvWbbVqnC5GdnDtftHpk/sopONuKuY/o+a9+6Y9GWNFbe9fuQ2OO25+EbrrqFunMJUFew8L6mD1ojYeDDUS9PqB75YOv1+VK6U5EJ0Hlm7UK61zaIi5Oly23oY6Yp5ixoPn/o3f1HsCfkM8dNc3+EwhA/cXdVjvUT+AXiPU7IdNebKajWHvfdi8a5PvVERVjhLan1wJngdLl6yztFzbVywhSB78hXGWpOt2yYDPAtmoE8MZQC7Xx//D1AeI8N2AcPuFfgwhf6gW4BQ/JxWNo/RoR9XRI469eOm2xq2JLWahrFtg2qeej1ZTKFFxIZXcwTUtVxIlS/GtDNXnXHoY0Jpxx4A0Gp5GemeZbRNa3vi4OELar4/NNPxwRreD6MmkJkb+TpphJLxLEizSTBS8KFa3lkROtgaM0XLMcygPzjso5iUk/vSidFYchyYkJEQMvPqOPL4hLU50VhO7n+hPhLcaKwP8z7LgjSW7fLUxfNeRj37DlhBYlifsH/p9Wx/sBm+m9kyJ+sv9q/2Ng5cLSyft/wlPFwByM09G30L006fj3AZE16FYWXDd6MyIKdU0YYN4EBJaDJK3UAFAE9vOHp38CDAs+b5lx8cuZlcxk6vaMNMzUEl0g7FlmUp/SScMIkiqOzYcWjLI9O9HXY4qrY6ryaJC8wxFvGk5MvSwtVFWxyAxdwVo/fLn0Ic7B/IGU8E48bU9Ku89wxyO7gcJ4H+bVURYuuzKmy1HbJJ8OVF501AlMdGyjnD6qHtGZifmoCU4WOeas7N+O7mDdthENJ55oUmLu2tgLS7jidD0CM18Pq5QPz32aJ5fMX7rPtPxJqVYX3WF4mrTB+MDjfz9TUHnEZ2WyeejmBFkYxrYEnL4oS8p5tzST1ViwN4seY7HsbsvdW8bKKcD4BBrIa+Upf9Ohyu9NsedQ8U9eY+LcB0Jvzf20CPLioVAvzEYnG40tZIrzbQNytQJuzHZdmhrTjfckSiQdpXFsIbWd2sztA9Dt8uqsq3rW0CmW/N//OlKt+jBQ7D8Bh2PYo8GOuV2qYtjcaEL8/jOgbvzmI2r22bhQ7VsR18JbToMyqFVDAIugCKVg6hbDLZQ0OGnxCSypO+rCphejRV5AIHn/VbuPqFD7zBrOE8eK299htk6IVz9EdFuqgZ/FbsONBuz/nUbzzNcVuwvEq0TokNCdkWMsLGky7b5cCM3V0oE107EGZSRTO1wvpGtTKvmVd6N/9BPLdSyexvBtry5LWx8Kx6UV8IR41G1p467tKg6Y45Ej5l6V1/WXNwrWJUeLH+Brl1aCeK3C/VsUEsv6T5kM6BkEm5M0+qIEkPLwCScII2mcUOOcYLVtzhalS3DaiTMwpRDPIgUfkrq3TophmvWnt09eGF3bwjOE6gLJ0AJS0YuWFDi4thRVcFVskcUwHfFCeOW0boowTYcRIESDOpmK5OLhptLje4mVQhYnsZm7D98uoODAaUR79hg3i35rp9rV8gYBw/Eyek4fLuScxceEf/cyFnBzD7cSu3SBQ958K4pm7Wuzld8md6YautNq695YvmkgAQIhplrrDLeGTX+b7L7sW8wGC/7Ylr44fUQX+bsuen4NlgbhQWI68+SaB7nR5NKgNDrit6F6Amhl05gzn0bhdqkVYPnaZa7QAhCUOFK6m+S62MV2dg6V98r8agiBB3nJ6KAG7f9VMEwqUuvy2CsH/2EOjGUM5mzG+I+TEcgnR9482sIRt7VlxB83lmoTcc+TTeAB+Hn+B8XwARna0des0OAqw1Ah3FVZi7xV0aL3VqkZpogmNBj97h+jmXAIMtiXSsd3zJBPeewEUA6J3nUcfu2rwICfWKmZ/LN9qULwkyIbMKnsOddNmVHVj66egnWCv50Ylen+wzCyXG60jWlIda2ZqGBd+xgegXBpiBj4RkaqcaP1CvbUaBQwRtZ+E3CKj/MBBEQcU7OERE0e6cN4568hx1hXrnQCOC/gDeUQJuH3UBj/uQJYq0Q54EvJbnap6P31P6XvHEarBFOlgib7UaSqHxMYbnB+/4iZ+JQqxakdT/hkH+naQ4m+rMb/y41/Z0WCESHnCjRv5noj1Z5bJOmE5oz5J8hbWSQYcoJ6KAGonwcTmDf69Xcv87i8UXnPNDPO9P6iiGCKFczxX17FHNjyq7zgVcqbQU6hXvdPNES/mZMLnKp1xcH3nJdea7sjy1uQ5WBlB6PDK3ySUvK4owHSOXw9vyP6uFVbuSD9BDDr9BjXe9I0S4BN2chq99Q61/QW0IXyZBRFwepKWVt3YKm7GKRCXyO/9ybgJy+3TnN3TcTMweh6E3wGbsn3W8B4WYRpuMZM5RMWaZUg2rv6sUENRdrhm134tNmK8ZevVxHLtcP9EqXc7I/ijIXO0fY/feIEyQf9SN4tKpyBOXB4BpFjnUYiuKr7ZBv/Fpmxt4ILpgN7dQKC01Ct1R+/X0Sezh+UwmaBNRgYROBW6F32gpSEC/9roVCp3H16nMa6a0NusO2NMTP5d1GaRtdstlVGliCDY3ow1dOjwExO4v7ocjsGud9n6T177J1IGpnNOd1dUa5T3h6J6a7pTruxL0bCte8UoBudu3umZ2ZUkZEcvNvVoXN8w72Zex/MZ4RktjqEvzsL34YRoQTfiiyXpCiEXp4+pzjuPTKNNR/BnEYMAqO9ZIrFDqiNPdfJ4MSSA2wwBK2pSuFidgqhjV398LZHao0CuH2oP7+c4pVJeQq0gO38ucfxS/+Q4eZnNjr5So7TxwUPegW5MchPThW91y546S8rKxVH8HdOlGxsbVc7y5oFY494HKiwShqEKTbVw8UcYB01BZlh6zqZRfWMxWTS/UaX2Y7A+3PtOEMmaWIGS1qdzBYIqdUnZd7gRRQSDP4xpuhByZI1k50OborJNBsTOmTFfqD4TaUzE+eoMW4fzswWpY7THcevY79Ln/4w4or+c/Fz0LkVxZRh2LU3wg/6QH58YVyYsjEG5JeDbk/hkHEUaYnGiPK37y1+dcMkxmfS0/th5QbROuFLfhFluSn2yUzw7FyyLXRjBXi+y+IH8WyDCZU3zp5NjVYgkIer2tqsMdUCIWP2wVtD0upavIt3i84IBrGDe13je6u/5PIUfRrK6fUTdzIET45ql+e8CrirnVZPL9CoIoQ9li1N4YqkH/0/J/1bOetF7l/ev7WSh6iVSd+JigOmu+HIkCyWTDVqwPD9WRMZch5bP8AmTbghsyESMSbLmf8WozPqnx+qqtbroNEaNFoZFakPmXo5Gy3KbCOf4uWKFrgmsfXgTYOsN7fPqqBw/VU9nkW+UYYsaYtebcM+8KiRNnKyUZ3u83wEOyAUBtam27M0wdxkRmve99Z6r91/8pUI1ZK/8dg2Orr8r5bfFF0E5Ax5U3L+V0MXMNjP1pTSZpmU23uXQX6keMBq1wZTgYO6bpRoukWQ3RG6fBjb+0P5KQURMfDC5tSyC9vuDAoZI3+GVAVoR7lqOaKigMLroyBOON2kkmM7w0o8vSl7i37/CyGm7ACIi5R6SYxQ0UbJREiwXqKzo822rXh7fKzWuZYEarcLvjrKT2vqG2VPd66Lr+0wPvzl8A/nXmIFZtD2lUgYdMOwxDlanjsOcyiN/dgrrTWmxoL7wO4o5QyOXAhA6SVUxGpB4VWwxp+Xbz+flhcP/hDA+GUeMPLDUEk5748ZAajEL18U95lM3ydpAv53JGXdlMb+DD++EQnfwgY6a9MBiGsiW7ZMqRx2Nd7zMTsmBB8ymUmvuIjPX25Pzd/xBczLpsg5jFmvBOwubvYvzh5WeS4PzH7aE/u/7pCiN1JCm7R65qT9eGYv+KsEEY1WEkUE9JPEXV60+cdIXVfeW2h9oPTO7D7Es+/0R9Q8WMJ0OPqH9VFBM+fGR4mT+GTODZZLinuUm9SjPsWmHN25mzCsGR83PwiZySz40su0YUGI0i3+JTqeeOg61Actfz4/Ta1zreAPcExg0Unh1xF3poeBgmdWnIEWQsEZXeS6D2m0Y/kIIb/ZtQf0ZzEXDCJK48Q8a6ACAN9kPkBebnnzOo9Cwxywbt9CWqt46zorjAigp7RrV9crnlLeVzOq9OFoONS8Wu/HuKGquyCbNyuGC9VcwlTCSOJUvTUo/cH7XKk56FyX7lOOd488uwayZtRyoS4JhAnGWYaXx79SWJsBhqsCO2Me599n/muQaxjhMBc6Z8efhG2mI1Fhe1zdGTOE6iub+IQSek3S0cmfHAAhYcytoqngb6wwpsGnOhBRRaL0GviqizYum70Ukg/s2nNjzpigju0Aly1AIsz2664QQNYs36U4lomDRNmVfpzv+Ziv2a+G7/IJVLTqh9M1Da2mc9y0wd+f8+NX69/TRh3spstt3+C16NdXTVbxcNLr5gzO0qeAgiQaZAWseIhrjPXWMU/FdWB9WsXlCNSlaeGRHy9hz8VVSuuwp6TbDAOTcJWO19XPmjCN9qAbT7HGsfsRfAkWj7btYLvKDoimaCuAAAAAAAAA=" alt="Graham"></div>
+        <div>
+          <div class="host-name">Graham</div>
+          <div class="host-role">Co-Host · The Competitive One</div>
+        </div>
       </div>
+
+      <!-- Core stats row -->
+      <div class="host-hstats" id="graham-stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px;">
+        <div class="hhstat"><div class="hhstat-num" id="g-wins" style="color:var(--red);">—</div><div class="hhstat-lbl">Episode Wins</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-rate">—</div><div class="hhstat-lbl">Win Rate</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-pts" style="color:var(--yellow);">—</div><div class="hhstat-lbl">Points</div></div>
+      </div>
+
+      <!-- Extended stats -->
+      <div class="host-hstats" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px;">
+        <div class="hhstat"><div class="hhstat-num" id="g-picks-total" style="color:var(--red);">—</div><div class="hhstat-lbl">Total Picks</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-unique">—</div><div class="hhstat-lbl">Unique Picks</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-first">—</div><div class="hhstat-lbl">🥇 First Place</div></div>
+      </div>
+      <div class="host-hstats" style="grid-template-columns:repeat(3,1fr);margin-bottom:18px;">
+        <div class="hhstat"><div class="hhstat-num" id="g-recs">—</div><div class="hhstat-lbl">Recs Made</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-streak">—</div><div class="hhstat-lbl">Best Streak</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="g-accuracy">—</div><div class="hhstat-lbl">#1 Accuracy</div></div>
+      </div>
+
       <div class="host-favs-title">Most Picked Films</div>
       <div class="host-favs" id="graham-favs"></div>
     </div>
+
+    <!-- ── IAN ── -->
     <div class="host-card ic">
-      <div class="host-avatar-wrap"><img class="host-avatar-img" src="data:image/webp;base64,UklGRuQWAABXRUJQVlA4INgWAADwXQCdASoYARgBPlEokUYjoqGhI/LpgHAKCU3cLqfAAzhn1fznYyWH7H+Ov9h/bT5la8/SPvb/Tv2Z5g2oP9v9wHwJeS/oH+y/uX7uf6T5v/6D/Pfzv3JfoD/S+4F+k3+Y/sv+P/6/+K9jP3L/uV6gP6V/gP/B/l/eS/y37D+6/+4+oF/U/8D/0+we9Ab9lvTN/cb4Ov6t/t/23+Bv+f/3X/1+wB6AHUbqZ/y/if5fPdf7H+3PH5iWdo/7z+68Vvyd1CPx/+lf5/gLwB/nn9t/W71jpn2QB5f9956R7Af6f9CH6p9BP1D7B/89/wnWi9Hz9vBwF8F1MqGC6VDqZUMF0qHUyoYLpUHq8ZPE2Ji25jOwgLSHZUMF0SIb+xNQz3x/F2hIojkuQL2krBeVGVxPClPZoJWYFdrXnoKbRs2C6mUz9HhTW9ffD+2FBzltqLQ8gdntas3cWXp/tKeONOBho47PbcLunS5wb8H/PRAWpmhZL9D97oWjn8fRiGNyBwHVdlSG9Qato4e0PFI954QQLpUN7bvZ0J4bmF8BT/ceE8HXwwqJQHHBxmPMTbrsqGBCmHozNzH4YpE6sNsT6Ugf7+99bP6B+Dg0PwGM8AW4lzuI0SHZUHhjShdew/1qD3wcm4XaxhoMLMEmdywUiqZmy0RnWwUgQ3YXG8nvkPTG2ODjTgLkCJHLe94xFGdMtZ3mofn967+fwtVZNwGguNQfIJ/pQtin/uKLFLoG4jUaYV5gQtDZVC9VNK6txmMC9wJkIaDyMd7zqDzacvdamNKuAc7jNTdsrOg6toUzY1UYBElCVDBcAqcbmEP6j6J0bvc6HPytv0TGDrOnZoVXH7R/bl/7HBdBh9scHGdagEs4hkmsKRVKc9juG4CTsGWDlzELLxJADHkGtofEfdb9scHEJ05S/myba97pX3d7F6vS4PdTKhglA22bgS3qVtrf5i+hUA3/8cn/Us404dTKhpwzhK8odTKhgulQ6mVDBdKh1MqGC6VDqVAAAP7yNT/50N86G+dDedDf+nk0e2vKAAAAFjXeiLatHO7yaZ3AteA069ln9FPut+ltCyEZP5aCqbMOnfzjhbXexQXPTXGZCZ2PsKbYUoKDrNh4oPY0KmErriVw900i3sUhAXTmRGOePW8OWgUNx3pSdM5nMUqP9gRNP7WrAqVfN/ZdH3agxK2n417FW1w1HMsZRi0rl6RncPXLZOo2tMa+6/9yqqxOYS1EuyWVW4j5M6NeuxpVFRBN6DicQzlUoHKPjr+ykEdUtgHCU9FJKD+HM9eqStKSmBMcRUpl1GAnjMawLwZ8iKCqxU6iPFoq8t2rZ6e0ys84BEnj708rymmnwgQo7VlzSWZjS5Tu2nkveppayTxb849c3i2bNiDMpmUD21CYHRvvvt1LBwXa5zpUZ/dTVmaw8OX2EHSJKT6YonkaWICZFR3FHRwkgTfGF9FmU35VAJyOdQhbW00c19GpospuxrsiRDoFopq37UTIsOHB+pc8XTQUtofQCD3uYDkxNwCqgvSmRHzOpUvsOPh7g7iRenfr4sfE7TDdz6GzPWvhAC5dyJ03ud/BLJ5PGpz6iprziMob+zEh8OQ/r+EfIX+5gpjBSivZ3EqiIXTqh8WRinc8GVJUxzX63P8ueWOQ1tKZI8AmTDAxHLvk31u/7RmJx6HYsBomCBYbPCeXAQno8nkk9t/gVGAATnt70XtljvPW6oGSSLX5+B0xkSGm2PuyxCcG9D+0SB+A297i8RbF7adJtF5BXWAWhB//TZ+HVEjPVKHBZt4vxCbwVksFQ1bfS3CjK1pTojxogPmxPTa+8ED2QjmgaQD4u7hUUXpFkJYRQ/t5qvFIXAGnDRUgM03PqtbXGjFrrFWDXQpIjsncKa/y6ufxticuzFyK+z+dBF8QJoYCCDC76veTaCw71qX138Or8eTWSs3Af/iVFljnLS9rq1y90d4cXewYgrCuWz8k6VHmdI5DsIDNUBo9MWgNvhscSqUP4llGGaYt8MwVX+D+QR4ZXrc6hgjhi1ZeydACtn4Oz6IHUzW0/9STKNQ7TQdBxa0ISyKBwoLOD0Tn2xNN7IMzqZLXM51LZwVZXzpmBcGy3XyVQbQ7x3stu5qXTiaxRU2K0UPJxEl3n8cGI2D50dluLGSE6uUTcMG1Lar7pBN90cB+FCdfxSCJbjgX3xLDpjDal0pyXWRQsaQoHO4mc42O1mrqrF8gQ5JquIlJYSBkecOp55wBR+L2YjNhUuPTrfRT7hK+FPXDj6eyTHGqP/J6/fCy9hezWCx9HEAWFJ1n2hsQEYK5QLMFpoKhPbH1CtmyARz6cDFXpvj2+wRlQXix4QN8J6ra4g88NI5fefpLJ8Aum9IaDXztL5ZoZqAubTm1LOrSQuOKgdqRSnGtMYjy0XC4xvJjQs1/W9LpWENXkjHCisu5BOPYjs3ftBZIwvKXXGsYzW31/gFq4LnvE0G2LbLCd8vxeqr2bQ+yX4y0k23aMODQPc0UDt221ZBB0G/JRp6Sp+9T/MYkT/qzt9+GfsEtRhjvRfFi6MkaYN+C+7+/NuVjFb1G5hJ8ZUDH84cuy0dVFNdDQnaFvM7V3LRQRF/RhhDmvxFRN9qxF8PjV2GCea4ZllY0HZUufKG3hQdnA44CFoU/WBNFgiPxZXEMiMeKjG7o2aWxrNoBKooA/OM1cBqj5/gGHCQ0PzCNF5PY0v3i4Kasw9Ak4dISiMSn8dcm0esXBjOj52DB6OPduSnpq2SyqK9PCM9fyIPvrAHO0rdE2yVgCmjf451YEaWbyzt8+BHMt9Nhv0GoJwCXYSHUmlBzh+lNdMWmpEoK3g4TdCzVqsFBaoiAIspAQ3KXsrp4XS1rrQSP8r+l/Yapczg5mPR189stgAYaVbrKd2f74Ib3fx42m4K8rdw3WItQ+CCkCB8cTqSHzuTEH8UZyMjDrOPfR0s2mTnmVNwNEbbMGs8GmhI4kzZp4TtMEUY6n3bXX2p0DDfa40ag5MF7NsymXu7Oq6xcXq94KDvgbwU+FttY4taqTpKj6qlCV5Wq1zICoUEnwOnKpXt2T0tUDNf61MgagQFWapgUtqBf09dCAFmKDImTu7RRpvtNbmSS4wqEaOt80G6jza3/l/Rn+OhS9G+5V4yjx8NIaf8YkEPKrWPH8QAahGPO+RSRTwBmMp32riN3M6tuGLrdE/b/0I8K8fXQi7glPLxn3lanRDkzvF0UrnJaBci7oG3CF93Q0E27XvYWPbHnXHTJvfj5YPmeM8Q74K6XvGu2nXQ3vdjv9A3Dz3m1gjyvs2773MIa/WbjY73AZnw88wL0jtIzht/p9ByLnJx5s0fASnuPjDgiGEnZsMLF4WgJVvDgQpXAS5IicBmOIXA8+9JbnZ6574uJxzN3m2aJ37Qi5sCfmombdIdn7cAmURnFPpI2pQmusi2GCJmVekxXg1qO7a37Iu/a8STv8ltJ1Z05qYm1yuHoJ5XhA66GAz52qPoqDtM+XI/C+4OdUVEt1GW6dxaurVHeOCjnTbOsAUUMX9pdm85iT2azdywNraD/krS75LmXH7q9Chcp7SJW1Z6KAhzWjnGuAV9+BGgVB0BSdQ4odi8ihr3QF39gKewtyrRIrErqEb3iSgYDs7XPBxknODzXL7O2IUP4Y0ywYmwpBT7jKgbgijD0HbWtUojwLjOJn0ONElAvob9dbrgWofPimc+1BYeVI35WpJpUwWvR81TspRRvzIAsFXygRoFtD8g4QWARIr1+D83EWlE7jZ1pbNVmOPwQO6dDFD6MkssS4bvBsyEU2zJPM3TUQbQxMwOZMiveRRNmyMDgEK6mxXi6tVme3oNroqJZWd35rxJk4+dyqtFi5CRt5vOXrHR2T38q+fLDyUfLtBSW5qKgsT8xd3lQcRM9VBpW1r90dEfSNR1LPfuOjmhyGa2ejR5zzg+QsqrfFhn4mg/HkIu0NFmY3MUaaENUU7B/dORzl1dnEXj6Bvo2WXRIXRKQmVszRXbpqhvN9PspQVrfR1tuH8tFfc4az9FT+by9zyxjY+eu42dkppxp1GShQD0qshEn06C+/W3r/v7Jq0VbnFE4fPO05pzbb4s0aKXMh2A8PxuPwtVzSZDUgj2Pvqp3zGl95PqggMXSOU4+CNNvNq3aEjDXsousJgNGa4HON63wxqYO301aiNxAJXjRCCKX50koyV+XhFwK6ClVs4jPfPoIB1LU5R9KQzRCiZ8spN0Pv/Xm+2y+FhFGhCMdD/MZPtrbL7h01zgGT1UY67rZk312XzYvhge2PZxRvjPLFBJ1VND/vWSuvrXXw1HmLL5gfuIUKiGM224XSWvJ197ygs6rf1YxffcIocZW4SQcZhW6KevfcC0au5eRQZNEeK6BCypYyB5e51Kz9JmVTKWfJeiuWyzHu23vS0HgfOBBCpQgP5zav09emC5CYjONP9RCYHlYBSreEoEFJ9woXrIq74EbhxRVao+Azf7yWLQmVYJ3U6fN6nT5q+tM5wOQwM0Rd+Svkq/eXxk0DROqCGFyQaq7wTWKy4rCKKc9yTXNrpfjY3pzMGmX5GryC42pos8T06FwMYaCPuPz6AJtClRWkLHPgEwNJ3vzIdWN2nQRbfgdd0EfUf3/gmA3rsnzjtvn4wy8xiy4HKtopPDwDmOZske0Rlg3Mc9zxlj3GNX3OzL1ouFjSTxvLs85YKM8SEhS/OwNEeAPh5cGxU2Brq9acX9WzU530rXbCMBORMKQd26RffVVkVQ151ttFhoSN7ZS6YqnNzjeP45CIRMModjEJP+dMMEHyL4P0dW7d4UL1V/2PeuUwOYbqrHD+tFkOF4zwNcG7V4I3mkEy+Byj2Cv7g1a0c9b8txPXUsIY7x+3NU/UyuDXXYVD6Juei85xgSVaPO567KweHSL2QbsX5sAP8J9PmMIVsHbKhRNedbLQFMm4Hee6AL9hcWFuLKeo4MwpXJHP4lhfqTwXtUmR/xzZ1soLuuXKr9aduE0iMGJypVJerevZXZe/XzkxcU/sFxMzibLW32UR7BopwA1lQjVaquIjbVj6KXglO2uXGikxaBpN6Dqj2lboY3LjnLOtynfyDkEkTCw6rftpN8jEzoyE8DyQ9wu6tGc92XHLuxUGGTfNPzp1xrNWLCJNmlRIPwzDFOvfQygBhwN2Zn7YfYCGKZEj+IcmpkAemGXqOZWy58KmjuBz7qa7CgRFIyuZ6Jy1v0O6STSrSrhV6PG8LmklbCYa+clZgw/ijAYWV/o2L5/aD18urH/DJXh7FVvVLSkVyzHk8jrzCsiE+AXRtBGBrhDkhGJY4JRycFkA5t8xgvq7DPNiwckJAKhTAmng5Fdm3Ov8bEgGa4+36nN+e0eCxmtlnfv/IkyjyeZ86VA/G96GL32hUfcT5Xg59Oel3br7AsVifYnarXh0bQNUJ60G/P/zdZWdIV6Wqq3uMXNDsBWbg98gbIU9NtDdSQe2h6ov2t5zb46+EjIaJLvOBQpgBmJ8Rp+nOWX6LAD9yall06v0Bu0IbZ7kMET6sQAB4A9SngNpb05bCd0sA9aqMHcBJ6eyaRd8sz7RRFVJVWFmGcv9tyLz5GhIEdt5Ykk7AdcCaSWImCkKkoYGmA6KzevXK9mGxF/pIeIrRwjXb023dQbsuB8YgAU8IoltL35NGZqHaHCH0BYiX6o8vXZJ/B/U5qzuqnGoaJTnQJJtgQprPZnDgyBZWI388UGcbxGyjwnOVTKu0asYPtv77QlZQnX6cLAMvOlHiXq88GuchQw/7bppVojJuuo77Ab6+i/VfIlacBhwp44tNB7lNFNOekY9Wqt8/udZIfYSogxlsQQDjTaOgtBpmbIp6pFedev3o4X8rq3G4aegz+hC1OVKmQ3LHFqSkH2apNbDmlDE4UKagrY/f057e7exarOZ3JZKeEgj20pBhYfql7lpUB9RXCQwkpN/25jpqHDf7pQ9AdfS1gE57L25ypqBapO4o2gRRe8KlSxCyqgVS8E0t0bmoB628YLerKNoGR7Z/MXYVzIfYS3wFDzFm6opSBOPwu6o3pj5MgAgZYM5L/PWAO3ipi2pYJvOn60AnS20IE7mOOnDFB0V/onrN668KebgiUQf5MnScZBQIFgF/FuN7BeM370+zo++B2wTkpBDomAbjWcWZZzJOemQn3H7EnYnGZfbh+chvYa+ILeh4VPQQw+Xu6+lkuvVxUXQRi51QxV8Pw+dB4VLuS7xsvteAADhSkRjufHm48fHZQU2upsq5EmLuUJO8HKtIKanWI+Sa7kGtoVwsPWGry0wmOqFWTlpYMFcNQ/ddhdDqKl1ztoOuj1NZiVJbh1MZucmLSR2DfeVbOOtfu4Br/ojQ4cx/ARMcF6PoCicP5YQcE1Mlc9IHD5gv6i/6E0q0g2vE3szs9I36luGuM03MIvmJc7zNB4gUJBLL1Ei43YlqdR/OnfSmM8v8SSJ7OCflPskJn6DpnlEUXeJALGtvwK2oKi8UtAxLbybjnjmFUlVvvZH1xpUliIM+371P/0L6CW/dp4VUni7SfdSItJDOR9N6xrfSkB2Ojsg1ts9zAd2TtbvxUckv9zchiM+LUxKEuhn+PxqxPzGHuj0XEqv5H9IYoXRuJCMyW8zJfdM1NGmqaVa4aGrBdaFA5ZwW+WUC1u1/1yAo+4ViCfnOZk53KVzZsjL3wMU12QhsWUmC4XSbQ4oizxDvjHI4gRTouP7SfwrGkuqIvEmjg/wOeZ9iv0DsAM8qHlNh5Kfvudw6/XypF2NC6IbZIdlCVF0RaYzEDw4Lnnz5SPufo6/M43Bl4HVWJe1VodjUSG0750nDLjKhnS74B9cGCPYWfTHkbbMLXAARf60Lix4LxVKr/i+M95IrBJ7nSJx5y92vGJM4AvW7RWy39dU8XkkBGLTW7YEtxbrn2b4dNe1s90VytkIZZoze4E1m12TSpZ1ZieZgRlOpg4oOBZy50JS3BCbfpobN7s/NBMUD78cmVzMdPVQOnhQzHAi2dJCV/8/M73DqV1Z3gbPFU1iGTP6Hue82UloDBHmloa7zgOXPxJCQxzoSiAVVM9p+wMYSVcumRrtzoD3uKl9tTAlZm76CHmKdSzgBdP3a/hkxJY7zaOW5b6uQZZDgHDux06nd39YAPasE1X3nvenPcDosIX8qgmoctcp7I45P/oUCyEQK5XJhIgoMxr1RKSjAv3+KKXWicYsoO0Cy3utQ/GRhFDrZ0iXdIbJRJMaMlrBpRSlRBg2nFqgHMuVh7ZLwxFDk2CQbCtCEZzKS0YYI10oP25ErS9DxkM02h2Q7P8S58R4D9dhLv1VjpMNz/SdL7j6a6lxJKFFTLxdAACOiCPEz4ipvhr2rEsGXZ5FLZN4s+qzsidXwHs621VcVrzvrkxxLMFydOjwsIjolMuZcxkl+4hcOBMgBsektCOfN07rwWDyG5jC77RLFjg1pggj3CKh+IHM+/kouTCD+oIAhfo8D5bouqObWN89Oudo6HRAppjz/nDvZaAqf4A27bSZUG/E2qfyBmRrhCtVM5dW/Pi/jyk3l+9cr0bhX6XhxME7VCXX1BCIvBVqWMHFvpGnyR8liJIdaTNmCfl81afbWeSNuWwVgqTswXHnysCcIUiWIK2vcuhCfVi9UWDxRj7UAZIuS1YGkjyGcwEslvd8XZmuUfWzi2cMM3IS170D6n0h49zUGKjAj7BfVE4C76vUp4ZhCi5EsC8TTdbYKDFT7KantouMOx8l9rcpyyVHuFPkj0zOpty/NLqLX9WtO0YNBNxAaN5LiVslRlXnWbOzVZKjgAAAAAAAAAA" alt="Ian"></div>
-      <div class="host-name">Ian</div>
-      <div class="host-role">Co-Host · The Contrarian One</div>
-      <p class="host-bio" id="ian-bio"><span id="i-rate-bio"></span></p>
-      <div class="host-hstats" id="ian-stats" style="grid-template-columns:repeat(3,1fr);">
-        <div class="hhstat"><div class="hhstat-num" id="i-wins" style="color:var(--blue);">—</div><div class="hhstat-lbl">Wins</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="i-rate">—</div><div class="hhstat-lbl">Win %</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="i-pts" style="color:var(--yellow);">—</div><div class="hhstat-lbl">Points</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="i-unique">—</div><div class="hhstat-lbl">Unique Picks</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="i-total-picks">—</div><div class="hhstat-lbl">Total Picks</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="i-recs">—</div><div class="hhstat-lbl">Recs Made</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="i-accuracy">—</div><div class="hhstat-lbl">#1 Accuracy</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="i-best-year">—</div><div class="hhstat-lbl">Best Year</div></div>
-        <div class="hhstat"><div class="hhstat-num" id="i-streak">—</div><div class="hhstat-lbl">Best Streak</div></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;">
+        <div class="host-avatar-wrap" style="flex-shrink:0;"><img class="host-avatar-img" src="data:image/webp;base64,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" alt="Ian"></div>
+        <div>
+          <div class="host-name">Ian</div>
+          <div class="host-role">Co-Host · The Contrarian One</div>
+        </div>
       </div>
+
+      <!-- Core stats row -->
+      <div class="host-hstats" id="ian-stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px;">
+        <div class="hhstat"><div class="hhstat-num" id="i-wins" style="color:var(--blue);">—</div><div class="hhstat-lbl">Episode Wins</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-rate">—</div><div class="hhstat-lbl">Win Rate</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-pts" style="color:var(--yellow);">—</div><div class="hhstat-lbl">Points</div></div>
+      </div>
+
+      <!-- Extended stats -->
+      <div class="host-hstats" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px;">
+        <div class="hhstat"><div class="hhstat-num" id="i-picks-total" style="color:var(--blue);">—</div><div class="hhstat-lbl">Total Picks</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-unique">—</div><div class="hhstat-lbl">Unique Picks</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-first">—</div><div class="hhstat-lbl">🥇 First Place</div></div>
+      </div>
+      <div class="host-hstats" style="grid-template-columns:repeat(3,1fr);margin-bottom:18px;">
+        <div class="hhstat"><div class="hhstat-num" id="i-recs">—</div><div class="hhstat-lbl">Recs Made</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-streak">—</div><div class="hhstat-lbl">Best Streak</div></div>
+        <div class="hhstat"><div class="hhstat-num" id="i-accuracy">—</div><div class="hhstat-lbl">#1 Accuracy</div></div>
+      </div>
+
       <div class="host-favs-title">Most Picked Films</div>
       <div class="host-favs" id="ian-favs"></div>
     </div>
@@ -1619,7 +1626,8 @@ function switchTab(tab) {
   document.getElementById('view-'+tab).classList.add('active');
   document.querySelectorAll('[data-tab="'+tab+'"]').forEach(b=>b.classList.add('active'));
   activeTab = tab;
-  if(tab==='data' && !dataInited){ initData(); setTimeout(drawChart,300); }
+  if(tab==='data' && !dataInited){ initData(); }
+  if(tab==='data'){ setTimeout(drawChart,100); }
   if(tab==='patreon') renderPatreonList();
 }
 
@@ -1888,6 +1896,48 @@ function initSite() {
   }
   renderHostFavs('Graham', 'graham-favs');
   renderHostFavs('Ian', 'ian-favs');
+
+  // ── Extended host stats ──────────────────────────────────
+  function hostExtendedStats(name) {
+    const allPicks = EPS.flatMap(ep => ep.picks);
+    const mine = allPicks.filter(p => p.picked_by === name && p.pick);
+    const unique = new Set(mine.map(p => p.pick.toLowerCase().trim()));
+    const firstPlace = mine.filter(p => p.final_rank === 1).length;
+    const recs = EPS.flatMap(ep => ep.recommendations).filter(r => r.recommended_by === name || (r.recommended_by || '').includes(name)).length;
+
+    // Best streak
+    let streak = 0, best = 0, cur = 0;
+    EPS.forEach(ep => {
+      const winner = ep.picks.find(p => p.final_rank === 1);
+      if (winner && winner.picked_by === name) { cur++; best = Math.max(best, cur); }
+      else cur = 0;
+    });
+
+    // #1 pick accuracy (personal rank 1 → became final rank 1)
+    const personal1 = mine.filter(p => p.personal_rank === 1);
+    const p1won = personal1.filter(p => p.final_rank === 1).length;
+    const accuracy = personal1.length > 0 ? Math.round(p1won / personal1.length * 100) + '%' : '—';
+
+    return { total: mine.length, unique: unique.size, firstPlace, recs, streak: best, accuracy };
+  }
+
+  const gExt = hostExtendedStats('Graham');
+  const iExt = hostExtendedStats('Ian');
+
+  const setSafe2 = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setSafe2('g-picks-total', gExt.total);
+  setSafe2('g-unique', gExt.unique);
+  setSafe2('g-first', gExt.firstPlace);
+  setSafe2('g-recs', gExt.recs);
+  setSafe2('g-streak', gExt.streak + ' eps');
+  setSafe2('g-accuracy', gExt.accuracy);
+
+  setSafe2('i-picks-total', iExt.total);
+  setSafe2('i-unique', iExt.unique);
+  setSafe2('i-first', iExt.firstPlace);
+  setSafe2('i-recs', iExt.recs);
+  setSafe2('i-streak', iExt.streak + ' eps');
+  setSafe2('i-accuracy', iExt.accuracy);
 
   renderEpisodes(EPS);
   const flatRecs = EPS.flatMap(ep=>ep.recommendations.map(r=>Object.assign({},r,{
@@ -2381,7 +2431,7 @@ function initData() {
   const midsEl = document.getElementById('mids-big');
   const midsSub = document.getElementById('mids-sub');
   const midsBr = document.getElementById('mids-breakdown');
-  if(midsEl) midsEl.textContent = midsPicks.length;
+  if(midsEl) midsEl.textContent = midsRecsCount;
   if(midsSub) midsSub.textContent = 'times Midsommar has been recommended or picked';
   const midsRecs = EPS.flatMap(ep=>ep.recommendations).filter(r=>r.recommendation&&r.recommendation.toLowerCase().includes('midsommar'));
   const midsRecsCount = midsRecs.reduce((sum,r)=>{ const m=r.recommendation.match(/\((\d+)\s+times?\)/i); return sum+(m?parseInt(m[1],10):1); },0);
@@ -2755,6 +2805,47 @@ function initData() {
     }
   }
 
+
+  // ── Episode Records ───────────────────────────────────────────────────
+  const epRecEl = document.getElementById('ep-records-wrap');
+  if (epRecEl) {
+    const regEps = EPS.filter(ep => ep.category === 'Regular' && ep.episode_name);
+    // Longest title
+    const longest = regEps.reduce((a,b) => b.episode_name.length > a.episode_name.length ? b : a, regEps[0]);
+    // Shortest title
+    const shortest = regEps.reduce((a,b) => b.episode_name.length < a.episode_name.length ? b : a, regEps[0]);
+    // Most picks in single episode
+    const mostPicks = EPS.reduce((a,b) => b.picks.filter(p=>p.pick).length > a.picks.filter(p=>p.pick).length ? b : a, EPS[0]);
+    // Episode with most Midsommar recs
+    const mostMids = EPS.reduce((a,b) => {
+      const cnt = ep => (ep.recommendations||[]).filter(r=>r.recommendation&&r.recommendation.toLowerCase().includes('midsommar')).length;
+      return cnt(b) > cnt(a) ? b : a;
+    }, EPS[0]);
+    // Most common word in titles
+    const words = {};
+    regEps.forEach(ep => ep.episode_name.split(/\s+/).forEach(w => {
+      const wl = w.toLowerCase().replace(/[^a-z]/g,'');
+      if (wl.length > 3 && !['with','that','this','they','what','when','where','from','have','been','will'].includes(wl))
+        words[wl] = (words[wl]||0)+1;
+    }));
+    const topWord = Object.entries(words).sort((a,b)=>b[1]-a[1])[0];
+    // Titles that are questions
+    const questions = regEps.filter(ep => ep.episode_name.trim().endsWith('?')).length;
+    const row = (lbl, val, sub) =>
+      '<div style="padding:8px 0;border-bottom:1px solid rgba(27,79,140,0.08);">'
+      + '<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">'+lbl+'</div>'
+      + '<div style="font-size:13px;color:var(--ink);">'+val+'</div>'
+      + (sub ? '<div style="font-size:11px;color:var(--muted);margin-top:2px;">'+sub+'</div>' : '')
+      + '</div>';
+    epRecEl.innerHTML =
+      row('Longest Title', esc(longest ? longest.episode_name : '—'), longest ? longest.episode_name.length+' characters' : '')
+      + row('Shortest Title', esc(shortest ? shortest.episode_name : '—'), shortest ? shortest.episode_name.length+' characters' : '')
+      + row('Most Picks in One Episode', 'Ep '+mostPicks.episode_number+': '+esc(mostPicks.episode_name), mostPicks.picks.filter(p=>p.pick).length+' picks')
+      + row('Most Midsommar Recs', 'Ep '+mostMids.episode_number+': '+esc(mostMids.episode_name), (mostMids.recommendations||[]).filter(r=>r.recommendation&&r.recommendation.toLowerCase().includes('midsommar')).length+' times in one ep')
+      + row('Most Common Title Word', topWord ? '"'+topWord[0]+'"' : '—', topWord ? 'appears '+topWord[1]+' times' : '')
+      + row('Titles That Are Questions', questions+' episodes', 'end with a question mark');
+  }
+
   setTimeout(()=>{
     document.querySelectorAll('.hb-fill').forEach(el=>{ el.style.width=el.dataset.w; });
     document.querySelectorAll('[data-w]').forEach(el=>{ el.style.width=el.dataset.w; });
@@ -2764,6 +2855,19 @@ function initData() {
 }
 
 function drawChart() {
+  // Build TIMELINE dynamically from EPS: [ep_number, graham_cumulative_pts, ian_cumulative_pts]
+  const TIMELINE = [];
+  let gCum = 0, iCum = 0;
+  const pts = p => p.final_rank===1?3:p.final_rank===2?2:p.final_rank===3?1:0;
+  EPS.filter(ep=>ep.picks&&ep.picks.length).sort((a,b)=>a.episode_number-b.episode_number).forEach(ep=>{
+    ep.picks.forEach(p=>{
+      if(p.picked_by==='Graham') gCum+=pts(p);
+      else if(p.picked_by==='Ian') iCum+=pts(p);
+    });
+    TIMELINE.push([ep.episode_number, gCum, iCum]);
+  });
+  if(!TIMELINE.length) return;
+
   const canvas=document.getElementById('ww-canvas'), wrap=canvas.parentElement;
   const dpr=window.devicePixelRatio||1, W=wrap.clientWidth, H=wrap.clientHeight;
   canvas.width=W*dpr; canvas.height=H*dpr; canvas.style.width=W+'px'; canvas.style.height=H+'px';
