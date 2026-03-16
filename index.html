@@ -1795,11 +1795,11 @@ function initSite() {
   document.getElementById('g-wins').textContent     = S.gWins;
   document.getElementById('g-rate').textContent     = gPct+'%';
   document.getElementById('g-pts').textContent      = gPtsTotal;
-  document.getElementById('g-rate-bio').textContent = 'Wins '+gPct+'% of episodes';
+  setSafe('g-rate-bio', 'Wins '+gPct+'% of episodes');
   document.getElementById('i-wins').textContent     = S.iWins;
   document.getElementById('i-rate').textContent     = iPct+'%';
   document.getElementById('i-pts').textContent      = iPtsTotal;
-  document.getElementById('i-rate-bio').textContent = 'Wins '+iPct+'% of episodes';
+  setSafe('i-rate-bio', 'Wins '+iPct+'% of episodes');
 
   // Extra host stats
   document.getElementById('g-unique').textContent = S.gUnique;
@@ -2431,10 +2431,10 @@ function initData() {
   const midsEl = document.getElementById('mids-big');
   const midsSub = document.getElementById('mids-sub');
   const midsBr = document.getElementById('mids-breakdown');
-  if(midsEl) midsEl.textContent = midsRecsCount;
-  if(midsSub) midsSub.textContent = 'times Midsommar has been recommended or picked';
   const midsRecs = EPS.flatMap(ep=>ep.recommendations).filter(r=>r.recommendation&&r.recommendation.toLowerCase().includes('midsommar'));
   const midsRecsCount = midsRecs.reduce((sum,r)=>{ const m=r.recommendation.match(/\((\d+)\s+times?\)/i); return sum+(m?parseInt(m[1],10):1); },0);
+  if(midsEl) midsEl.textContent = midsRecsCount;
+  if(midsSub) midsSub.textContent = 'times Midsommar has been recommended';
   const midsWins = midsPicks.filter(p=>p.final_rank===1).length;
   if(midsBr) midsBr.innerHTML =
     '<div style="font-size:12px;color:var(--muted);">🏆 '+midsWins+' times Midsommar finished 1st</div>'+
