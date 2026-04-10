@@ -588,7 +588,7 @@ main { flex: 1; position: relative; z-index: 1; overflow-x: hidden; }
 .ep-expect-text { font-size: 13px; color: var(--ink); line-height: 1.5; }
 .ep-desc-note { font-size: 12px; color: var(--muted); font-style: italic; padding: 10px 14px; background: rgba(250,250,247,0.7); border-left: 3px solid var(--border); margin-bottom: 20px; }
 .sec-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .1em; color: var(--blue); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--yellow); }
-.picks-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(27,79,140,0.12); margin-bottom: 22px; }
+.picks-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; background: rgba(27,79,140,0.12); margin-bottom: 22px; }
 .picks-col { background: rgba(250,250,247,0.9); padding: 16px 18px; }
 .col-name { font-family: 'Cinzel', serif; font-size: 18px; letter-spacing: .04em; margin-bottom: 10px; }
 .pick-row { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid rgba(27,79,140,0.08); }
@@ -614,7 +614,7 @@ main { flex: 1; position: relative; z-index: 1; overflow-x: hidden; }
 .year-pname { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 5px; font-family: 'Cinzel', serif; color: var(--ink); }
 .year-pick { display: flex; gap: 7px; font-size: 12px; color: var(--ink); padding: 2px 0; }
 .year-pick-n { font-family: 'Cinzel', serif; font-size: 15px; color: var(--muted); width: 15px; }
-.ep-recs-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap: 2px; background: rgba(27,79,140,0.1); }
+.ep-recs-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 2px; background: rgba(27,79,140,0.1); }
 .ep-rec-card { background: rgba(250,250,247,0.88); padding: 10px 13px; }
 .ep-rec-name { font-size: 13px; color: var(--ink); margin-bottom: 2px; font-family: 'Cinzel', serif; }
 .ep-rec-by { font-size: 11px; color: var(--muted); }
